@@ -2,6 +2,7 @@ var fs = require("fs");
 var parse = require("csv-parse");
 
 var inputFile = "datuak/2012/MunP12_e.csv";
+var outputFile = "datuak/2012/MunP12_e.json";
 
 var ordua = "00:00";
 var zenbatua = "100.00";
@@ -10,51 +11,87 @@ var json_udalerriak = {
     "udalerriak": []
 }
 
+// 2012ko emaitza ofizialetan agertzen diren ordenean.
+var alderdiak = [
+    "EAJ-PNV",
+    "PP",
+    "EB-B",
+    "PH",
+    "EK-PCPE",
+    "POSI",
+    "UCE",
+    "PSE-EE/PSOE",
+    "PACMA/ATTKA",
+    "PUM+J",
+    "PFYV",
+    "UPYD",
+    "EQUO",
+    "IU-LV",
+    "EB-AZ",
+    "ONGI ETORRI",
+    "EH BILDU",
+    "PYC",
+    "HARTOS.ORG"
+];
+
 fs.createReadStream(inputFile)
-    .pipe(parse({
-        delimiter: ",",
-        columns: true
-    }))
-    .on("data", function(errenkada) {
-        //console.log(errenkada);
-        json_udalerriak.udalerriak.push({
-            "ordua": ordua,
-            "zenbatua": zenbatua,
-            "kodea": errenkada["Udalherri-Kodea"],
-            "izena": errenkada["EREMU"],
-            "zentsua": errenkada["Errolda"],
-            "hautetsiak": null,
-            "partehartzea": (errenkada["Hautesleak"] - errenkada["Errolda"]) / 100,
-            "hautesleak": errenkada["Hautesleak"],
-            "baliogabeak": errenkada["Baliogabeak"],
-            "baliozkoak": errenkada["Baleko"],
-            "zuriak": errenkada["Zuriak"],
-            "hautagaien_b": errenkada["Hautagaien B."],
-            "abstentzioa": errenkada["Abstentzioa"],
-            "hautagai_kop": null,
-            "ordena": ["HERRITARRAK", "PP"],
-            "hautagaiak": {
-                "HERRITARRAK": {
-                    "izena": "HERRITARRAK",
-                    "ehunekoa": "93.83",
-                    "botoak": "152",
-                    "hautetsiak": "7"
-                },
-                "PP": {
-                    "izena": "PP",
-                    "ehunekoa": "0.62",
-                    "botoak": "1",
-                    "hautetsiak": "0"
-                }
-            },
-            "azkenaurrekoa": null,
-            "azkena": null,
-            "azkena_aukera1": null,
-            "azkena_aukera1_botoak": null,
-            "azkena_aukera2": null,
-            "azkena_aukera2_botoak": null
-        });
-    })
-    .on("end", function() {
-        console.log(json_udalerriak);
+.pipe(parse({
+    delimiter: ",",
+    columns: true
+}))
+.on("data", function(errenkada) {
+    //console.log(errenkada);
+
+    var hautagaiak = {};
+    var emaitzak = [];
+
+    alderdiak.forEach(function(element, index, array) {
+
+        var botoak = parseInt(errenkada[element], 10) || 0;
+
+        emaitzak[element] = botoak;
+
+        hautagaiak[element] = {
+            element: {
+                "izena": element,
+                "ehunekoa": null,
+                "botoak": botoak,
+                "hautetsiak": null
+            }
+        }
     });
+
+    alderdiak.sort(function(a, b) {
+        return emaitzak[b] - emaitzak[a];
+    });
+
+    json_udalerriak.udalerriak.push({
+        "ordua": ordua,
+        "zenbatua": zenbatua,
+        "kodea": errenkada["Udalherri-Kodea"],
+        "izena": errenkada["EREMU"],
+        "zentsua": errenkada["Errolda"],
+        "hautetsiak": null,
+        "partehartzea": (errenkada["Hautesleak"] - errenkada["Errolda"]) / 100,
+        "hautesleak": errenkada["Hautesleak"],
+        "baliogabeak": errenkada["Baliogabeak"],
+        "baliozkoak": errenkada["Baleko"],
+        "zuriak": errenkada["Zuriak"],
+        "hautagaien_b": errenkada["Hautagaien B."],
+        "abstentzioa": errenkada["Abstentzioa"],
+        "hautagai_kop": null,
+        "ordena": alderdiak,
+        "hautagaiak": hautagaiak,
+        "azkenaurrekoa": null,
+        "azkena": null,
+        "azkena_aukera1": null,
+        "azkena_aukera1_botoak": null,
+        "azkena_aukera2": null,
+        "azkena_aukera2_botoak": null
+    });
+})
+.on("end", function() {
+
+    // JSON fitxategian gorde.
+    fs.writeFile(outputFile, JSON.stringify(json_udalerriak));
+});
