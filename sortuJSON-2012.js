@@ -87,7 +87,7 @@ fs.createReadStream(inputFile)
         "izena": errenkada["EREMU"],
         "zentsua": errenkada["Errolda"],
         "hautetsiak": null,
-        "partehartzea": (errenkada["Hautesleak"] - errenkada["Errolda"]) / 100,
+        "partehartzea": 100 * (errenkada["Hautesleak"] / errenkada["Errolda"]),
         "hautesleak": errenkada["Hautesleak"],
         "baliogabeak": errenkada["Baliogabeak"],
         "baliozkoak": errenkada["Baleko"],
