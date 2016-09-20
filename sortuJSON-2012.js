@@ -69,12 +69,10 @@ fs.createReadStream(inputFile)
         emaitzak[element] = botoak;
 
         hautagaiak[element] = {
-            element: {
-                "izena": element,
-                "ehunekoa": null,
-                "botoak": botoak,
-                "hautetsiak": null
-            }
+            "izena": element,
+            "ehunekoa": null,
+            "botoak": botoak,
+            "hautetsiak": null
         }
     });
 
@@ -109,7 +107,7 @@ fs.createReadStream(inputFile)
 
     // Udalerri guztiak biltzen dituen JSONean sartu.
     json_udalerriak.udalerriak.push(udalerria);
-    
+
     if (errenkada["TH"] === "ARABA-�LAVA") {
         json_udalerriak_araba.udalerriak.push(udalerria);
     } else if (errenkada["TH"] === "BIZKAIA") {
