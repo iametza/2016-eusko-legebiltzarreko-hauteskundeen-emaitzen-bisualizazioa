@@ -2,12 +2,27 @@ var fs = require("fs");
 var parse = require("csv-parse");
 
 var inputFile = "datuak/2012/MunP12_e.csv";
-var outputFile = "datuak/2012/MunP12_e.json";
+var outputFile = "datuak/2012/udalerriak2012.json";
+var outputFile_araba = "datuak/2012/udalerriak2012-araba.json";
+var outputFile_bizkaia = "datuak/2012/udalerriak2012-bizkaia.json";
+var outputFile_gipuzkoa = "datuak/2012/udalerriak2012-gipuzkoa.json";
 
 var ordua = "00:00";
 var zenbatua = "100.00";
 
 var json_udalerriak = {
+    "udalerriak": []
+}
+
+var json_udalerriak_araba = {
+    "udalerriak": []
+}
+
+var json_udalerriak_bizkaia = {
+    "udalerriak": []
+}
+
+var json_udalerriak_gipuzkoa = {
     "udalerriak": []
 }
 
@@ -42,6 +57,8 @@ fs.createReadStream(inputFile)
 .on("data", function(errenkada) {
     //console.log(errenkada);
 
+    var udalerria = {};
+
     var hautagaiak = {};
     var emaitzak = [];
 
@@ -65,7 +82,7 @@ fs.createReadStream(inputFile)
         return emaitzak[b] - emaitzak[a];
     });
 
-    json_udalerriak.udalerriak.push({
+    udalerria = {
         "ordua": ordua,
         "zenbatua": zenbatua,
         "kodea": errenkada["Udalherri-Kodea"],
@@ -88,10 +105,25 @@ fs.createReadStream(inputFile)
         "azkena_aukera1_botoak": null,
         "azkena_aukera2": null,
         "azkena_aukera2_botoak": null
-    });
+    };
+
+    // Udalerri guztiak biltzen dituen JSONean sartu.
+    json_udalerriak.udalerriak.push(udalerria);
+    
+    if (errenkada["TH"] === "ARABA-�LAVA") {
+        json_udalerriak_araba.udalerriak.push(udalerria);
+    } else if (errenkada["TH"] === "BIZKAIA") {
+        json_udalerriak_bizkaia.udalerriak.push(udalerria);
+    } else if (errenkada["TH"] === "GIPUZKOA") {
+        json_udalerriak_gipuzkoa.udalerriak.push(udalerria);
+    }
+
 })
 .on("end", function() {
 
-    // JSON fitxategian gorde.
+    // JSON fitxategiak gorde.
     fs.writeFile(outputFile, JSON.stringify(json_udalerriak));
+    fs.writeFile(outputFile_araba, JSON.stringify(json_udalerriak_araba));
+    fs.writeFile(outputFile_bizkaia, JSON.stringify(json_udalerriak_bizkaia));
+    fs.writeFile(outputFile_gipuzkoa, JSON.stringify(json_udalerriak_gipuzkoa));
 });
