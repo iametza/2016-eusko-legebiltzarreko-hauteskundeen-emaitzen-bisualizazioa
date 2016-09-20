@@ -1,0 +1,15 @@
+{
+  "name": "argia-ej-hauteskundeak-2016",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sortuJSON-2012.js",
+  "dependencies": {
+    "csv-parse": "^1.1.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Asier Iturralde Sarasola (asier.iturralde@gmail.com)",
+  "license": "GPL-3.0"
+}
