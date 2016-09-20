@@ -66,7 +66,7 @@ fs.createReadStream(inputFile)
 
         var botoak = parseInt(errenkada[element], 10) || 0;
 
-        emaitzak[element] = botoak;
+        emaitzak.push([element, botoak]);
 
         hautagaiak[element] = {
             "izena": element,
@@ -76,8 +76,14 @@ fs.createReadStream(inputFile)
         }
     });
 
-    alderdiak.sort(function(a, b) {
-        return emaitzak[b] - emaitzak[a];
+    emaitzak.sort(function(a, b) {
+        return b[1] - a[1];
+    });
+
+    emaitzak = emaitzak.map(function(element, index, array) {
+
+        return element[0];
+
     });
 
     udalerria = {
@@ -95,7 +101,7 @@ fs.createReadStream(inputFile)
         "hautagaien_b": errenkada["Hautagaien B."],
         "abstentzioa": errenkada["Abstentzioa"],
         "hautagai_kop": null,
-        "ordena": alderdiak,
+        "ordena": emaitzak,
         "hautagaiak": hautagaiak,
         "azkenaurrekoa": null,
         "azkena": null,
