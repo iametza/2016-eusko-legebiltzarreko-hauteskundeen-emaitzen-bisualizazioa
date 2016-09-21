@@ -70,7 +70,7 @@ fs.createReadStream(inputFile)
 
         hautagaiak[element] = {
             "izena": element,
-            "ehunekoa": null,
+            "ehunekoa": (100 * botoak / errenkada["Hautesleak"]).toFixed(2),
             "botoak": botoak,
             "hautetsiak": null
         }
@@ -93,7 +93,7 @@ fs.createReadStream(inputFile)
         "izena": errenkada["EREMU"],
         "zentsua": errenkada["Errolda"],
         "hautetsiak": null,
-        "partehartzea": 100 * (errenkada["Hautesleak"] / errenkada["Errolda"]),
+        "partehartzea": (100 * errenkada["Hautesleak"] / errenkada["Errolda"]).toFixed(2),
         "hautesleak": errenkada["Hautesleak"],
         "baliogabeak": errenkada["Baliogabeak"],
         "baliozkoak": errenkada["Baleko"],
