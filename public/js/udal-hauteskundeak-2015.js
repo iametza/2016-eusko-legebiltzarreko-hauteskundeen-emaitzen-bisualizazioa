@@ -15,7 +15,7 @@
     // 		"bizkaia"
     //		"gipuzkoa"
     //		"nafarroa"
-    var hautatutako_herrialdea = "gipuzkoa";
+    var hautatutako_herrialdea = "araba";
 
     var hautagaiak = {
         "EH BILDU": {
@@ -121,8 +121,8 @@
         },
         "bizkaia": {
             kodea: 48,
-            datuakJSON_1: "datuak/bizkaia-udalak-2011.json",
-            datuakJSON_2: "datuak/bizkaia-udalak-2015.json",
+            datuakJSON_1: "datuak/2012/udalerriak2012-bizkaia.json",
+            datuakJSON_2: "datuak/2012/udalerriak2012-bizkaia.json",
             json_izena: "udalerriak-bizkaia",
             topoJSON: "topoJSON/udalerriak-bizkaia.json",
             proiekzioa: {
@@ -137,8 +137,8 @@
         },
         "araba": {
             kodea: "01",
-            datuakJSON_1: "datuak/araba-udalak-2011.json",
-            datuakJSON_2: "datuak/araba-udalak-2015.json",
+            datuakJSON_1: "datuak/2012/udalerriak2012-araba.json",
+            datuakJSON_2: "datuak/2012/udalerriak2012-araba.json",
             json_izena: "udalerriak-araba",
             topoJSON: "topoJSON/udalerriak-araba.json",
             proiekzioa: {
@@ -392,7 +392,7 @@
                             var sel = d3.select(this);
                             sel.moveToFront();
                         });
-                            
+
                         bistaratuHerrienTaula(emaitzak1, emaitzak2);
                     });
                 });

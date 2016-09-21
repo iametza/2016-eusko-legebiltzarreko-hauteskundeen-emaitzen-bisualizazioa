@@ -97,10 +97,10 @@ fs.createReadStream(inputFile)
         "ordena": emaitzak,
         "hautagaiak": hautagaiak
     }
-
+    
     switch (errenkada["EREMU"]) {
 
-        case "ARABA/�LAVA":
+        case "ARABA/ÁLAVA":
             json_herrialdeak["araba"] = herrialdea;
             break;
 

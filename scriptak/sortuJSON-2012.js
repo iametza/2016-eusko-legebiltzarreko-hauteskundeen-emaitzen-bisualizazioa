@@ -130,7 +130,7 @@ fs.createReadStream(inputFile)
 
     json_udalerriak.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
 
-    if (errenkada["TH"] === "ARABA-�LAVA") {
+    if (errenkada["TH"] === "ARABA-ÁLAVA") {
 
         json_udalerriak_araba.udalerriak.push(udalerria);
 

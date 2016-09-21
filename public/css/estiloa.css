@@ -52,6 +52,14 @@ a {
     text-align: center;
     z-index: 100;
 }
+#kredituak.araba {
+    top: 460px;
+    left: 5px;
+}
+#kredituak.bizkaia {
+    top: 310px;
+    left: 5px;
+}
 #kredituak.gipuzkoa {
     top: 440px;
     left: 430px;
