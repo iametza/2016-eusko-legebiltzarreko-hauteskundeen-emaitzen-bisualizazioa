@@ -8,9 +8,9 @@ var ordua = "00:00";
 var zenbatua = "100.00";
 
 var json_herrialdeak = {
-    "Araba": {},
-    "Bizkaia": {},
-    "Gipuzkoa": {}
+    "araba": {},
+    "bizkaia": {},
+    "gipuzkoa": {}
 };
 
 // 2012ko emaitza ofizialetan agertzen diren ordenean.
@@ -98,15 +98,15 @@ fs.createReadStream(inputFile)
     switch (errenkada["EREMU"]) {
 
         case "ARABA/�LAVA":
-            json_herrialdeak["Araba"] = herrialdea;
+            json_herrialdeak["araba"] = herrialdea;
             break;
 
         case "BIZKAIA":
-            json_herrialdeak["Bizkaia"] = herrialdea;
+            json_herrialdeak["bizkaia"] = herrialdea;
             break;
 
         case "GIPUZKOA":
-            json_herrialdeak["Gipuzkoa"] = herrialdea;
+            json_herrialdeak["gipuzkoa"] = herrialdea;
             break;
     }
 })
