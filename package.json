@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "sortuJSON-2012.js",
-  "dependencies": {
-    "csv-parse": "^1.1.7"
+  "dependencies": {},
+  "devDependencies": {
+      "csv-parse": "^1.1.7",
+      "gulp": "~3.9.1",
+      "gulp-bower": "~0.0.13",
+      "browser-sync": "~2.11.2"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
