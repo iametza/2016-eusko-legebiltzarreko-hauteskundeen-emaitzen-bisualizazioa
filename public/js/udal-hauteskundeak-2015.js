@@ -80,6 +80,13 @@
         }
     }
 
+    var herriz_herriko_taulako_alderdien_ordena = [
+        "EH BILDU",
+        "EAJ-PNV",
+        "PSE-EE/PSOE",
+        "PP"
+    ];
+
     var herrialdeak = {
         "gipuzkoa": {
             kodea: 20,
@@ -481,18 +488,16 @@
             katea = katea +
                 "<tr>" +
                     "<td>" + element.izena + "</td>" +
-                    "<td>%" + element.partehartzea + "</td>" +
-                    "<td></td>" +
-                    "<td></td>" +
-                    "<td></td>" +
-                    "<td>%</td>" +
-                    "<td></td>" +
-                    "<td>%</td>" +
-                    "<td></td>" +
-                    "<td>%</td>" +
-                "</tr>";
-        });
+                    "<td>%" + element.partehartzea + "</td>";
 
+            herriz_herriko_taulako_alderdien_ordena.forEach(function(element2, index2, array2) {
+
+                katea =  katea + "<td>" + element.hautagaiak[element2].botoak + "</td>";
+            });
+
+            katea = katea + "</tr>";
+        });
+        
         var tbody = document.querySelector(".emaitzak-herriz-herri tbody");
 
         tbody.innerHTML = katea;
