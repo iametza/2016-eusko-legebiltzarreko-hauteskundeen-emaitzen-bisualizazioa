@@ -472,12 +472,29 @@
 
     function bistaratuHerrienTaula(datuak1, datuak2) {
 
+        var katea = "";
+
         datuak2.udalerriak.forEach(function(element, index, array) {
 
-            console.log(element);
+            var guztira = element.bai + element.ez + element.zuria + element.baliogabea;
 
-            $("#herrietako-datuak").append("<p>" + element.izena + "</p>");
-
+            katea = katea +
+                "<tr>" +
+                    "<td>" + element.izena + "</td>" +
+                    "<td>%" + element.partehartzea + "</td>" +
+                    "<td></td>" +
+                    "<td></td>" +
+                    "<td></td>" +
+                    "<td>%</td>" +
+                    "<td></td>" +
+                    "<td>%</td>" +
+                    "<td></td>" +
+                    "<td>%</td>" +
+                "</tr>";
         });
+
+        var tbody = document.querySelector(".emaitzak-herriz-herri tbody");
+
+        tbody.innerHTML = katea;
     }
 }());
