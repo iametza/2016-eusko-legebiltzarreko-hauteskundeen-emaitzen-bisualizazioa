@@ -212,6 +212,8 @@
                             return console.error(error);
                         }
 
+                        aldatuKredituenKokapena(hautatutako_herrialdea);
+
                         bistaratuHerrialdekoDatuak(emaitzak_herrialdeak1, emaitzak_herrialdeak2);
 
                         // Emaitzak eta topoJSON-a bateratzeko ideia hemendik hartu dut, behar bada badago modu hobe bat.
@@ -538,5 +540,9 @@
         var tbody = document.querySelector("#emaitzak-herriz-herri tbody");
 
         tbody.innerHTML = katea;
+    }
+
+    function aldatuKredituenKokapena(herrialdea) {
+        $("#kredituak").addClass(herrialdea);
     }
 }());
