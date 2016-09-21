@@ -1,5 +1,6 @@
 var fs = require("fs");
 var parse = require("csv-parse");
+var iconv = require('iconv-lite');
 
 var inputFile = "public/datuak/2012/MunP12_e.csv";
 var outputFile = "public/datuak/2012/udalerriak2012.json";
@@ -61,6 +62,8 @@ var ordenatuHerrienArrayaAlfabetikoki = function(a, b) {
 };
 
 fs.createReadStream(inputFile)
+.pipe(iconv.decodeStream("latin1"))
+.pipe(iconv.encodeStream("utf8"))
 .pipe(parse({
     delimiter: ",",
     columns: true
