@@ -7,11 +7,11 @@ var reload = browserSync.reload;
 gulp.task('serve', function() {
     browserSync({
         server: {
-            baseDir: ''
+            baseDir: 'public/'
         }
     });
 
-    gulp.watch(['index.html', 'css/**/*.css', 'js/**/*.js', 'csv/*.csv'], {cwd: ''}, reload);
+    gulp.watch(['index.html', 'css/**/*.css', 'js/**/*.js', 'csv/*.csv'], {cwd: 'public/'}, reload);
 });
 
 gulp.task('kopiatuPublikora', function() {
@@ -24,12 +24,12 @@ gulp.task('kopiatuPublikora', function() {
               'bower_components/index.js',
               'bower_components/topojson/topojson.js'], {
                   base: 'bower_components'
-    }).pipe(gulp.dest('js'));
+    }).pipe(gulp.dest('public/js'));
 
     // CSS fitxategiak kopiatu.
     gulp.src(['bower_components/c3/c3.min.css'], {
                   base: 'bower_components'
-    }).pipe(gulp.dest('css'));
+    }).pipe(gulp.dest('public/css'));
 });
 
 gulp.task('default', function() {

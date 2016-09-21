@@ -1,11 +1,11 @@
 var fs = require("fs");
 var parse = require("csv-parse");
 
-var inputFile = "datuak/2012/MunP12_e.csv";
-var outputFile = "datuak/2012/udalerriak2012.json";
-var outputFile_araba = "datuak/2012/udalerriak2012-araba.json";
-var outputFile_bizkaia = "datuak/2012/udalerriak2012-bizkaia.json";
-var outputFile_gipuzkoa = "datuak/2012/udalerriak2012-gipuzkoa.json";
+var inputFile = "public/datuak/2012/MunP12_e.csv";
+var outputFile = "public/datuak/2012/udalerriak2012.json";
+var outputFile_araba = "public/datuak/2012/udalerriak2012-araba.json";
+var outputFile_bizkaia = "public/datuak/2012/udalerriak2012-bizkaia.json";
+var outputFile_gipuzkoa = "public/datuak/2012/udalerriak2012-gipuzkoa.json";
 
 var ordua = "00:00";
 var zenbatua = "100.00";
