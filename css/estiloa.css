@@ -1,0 +1,98 @@
+.unitateak:hover {
+    fill: #777;
+}
+
+.eskualde-mugak {
+    fill: none;
+    stroke: #777;
+    stroke-width: 0.5px;
+    stroke-linejoin: round;
+}
+
+.kanpo-mugak {
+    fill: none;
+    stroke: #777;
+    stroke-width: 2px;
+    stroke-linejoin: round;
+}
+
+#kontainerra {
+    margin: 0 auto 0 auto;
+    width: 680px;
+    position: relative;
+    height: 1000px;
+    font-family: Arial,Helvetica,sans-serif !important;
+    font-size: 16px;
+}
+
+#mapa {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hasierako-mezua {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.daturik-ez {
+    display: none; /* Hasieran ezkutuan */
+    text-align: center;
+    margin-top: 10px;
+}
+
+.datuak {
+    display: none; /* Hasieran ezkutuan */
+    width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#unitatea-izena {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.datuak-taula {
+    float: left;
+    margin-left: 50px;
+}
+
+.datuak-taula .eskuinekoa {
+    text-align: right;
+}
+
+.emaitzak-taula {
+    float: right;
+    margin-right: 25px;
+}
+
+.emaitzak-taula .kolorea {
+    display: inline-block;
+    height: 15px;
+    margin-right: 5px;
+    width: 15px;
+}
+
+.emaitzak-taula .izena {
+    width: 80px;
+}
+
+.emaitzak-taula .botoak {
+    text-align: right;
+    width: 60px;
+}
+
+.emaitzak-taula .ahulkiak {
+    text-align: right;
+    width: 30px;
+}
+
+.emaitzak-taula .aldea {
+    text-align: right;
+    width: 50px;
+}

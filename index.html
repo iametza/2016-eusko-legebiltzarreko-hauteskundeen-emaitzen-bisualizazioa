@@ -1,0 +1,61 @@
+<!doctype html>
+
+<!-- iframearen eta #kontainerra-ren altuera:
+		Araba: 1000
+		Bizkaia: 800
+		Gipuzkoa: 820
+		Nafarroa: 1000
+-->
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Araba, Bizkaia, Gipuzkoa eta Nafarroa Garaiko udal hauteskundeak 2015</title>
+		<link href="css/estiloa.css" rel="stylesheet">
+	</head>
+
+	<body>
+		<div id="kontainerra">
+			<div id="mapa"></div>
+			<div class="hasierako-mezua">Pasa sagua herrien gainetik xehetasunak bistaratzeko.</div>
+			<div id="unitatea-izena"></div>
+			<div class="daturik-ez">Daturik ez dago.</div>
+			<div class="datuak">
+				<table class="datuak-taula">
+					<tr>
+						<td>Ordua</td>
+						<td class="eguneraketa-ordua eskuinekoa"></td>
+					</tr>
+					<tr>
+						<td>Zenbatua</td>
+						<td class="zenbatua eskuinekoa"></td>
+					</tr>
+					<tr>
+						<td>Errolda</td>
+						<td class="errolda eskuinekoa"></td>
+					</tr>
+					<tr>
+						<td>Abstentzioa</td>
+						<td class="ehuneko-abstentzioa eskuinekoa"></td>
+					</tr>
+					<tr>
+						<td>Baliogabeak</td>
+						<td class="ehuneko-baliogabeak eskuinekoa"></td>
+					</tr>
+					<tr>
+						<td>Zuriak</td>
+						<td class="ehuneko-zuriak eskuinekoa"></td>
+					</tr>
+				</table>
+				<table class="emaitzak-taula"></table>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/d3.v3.min.js"></script>
+		<script type="text/javascript" src="js/topojson.v1.min.js"></script>
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		
+		<script type="text/javascript" src="js/udal-hauteskundeak-2015.js"></script>
+		
+	</body>
+</html>
