@@ -100,7 +100,8 @@
     width: 50px;
 }
 .datuen-taula table {
-    margin-top: 40px;
+    margin-top: 20px;
+    margin-bottom: 40px;
     width: 100%;
     border-spacing: 0;
     border-collapse: collapse;
