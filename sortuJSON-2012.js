@@ -49,6 +49,17 @@ var alderdiak = [
     "HARTOS.ORG"
 ];
 
+var ordenatuHerrienArrayaAlfabetikoki = function(a, b) {
+
+    if (a.izena < b.izena) {
+        return -1;
+    } else if (a.izena > b.izena) {
+        return 1;
+    } else {
+        return 0;
+    }
+};
+
 fs.createReadStream(inputFile)
 .pipe(parse({
     delimiter: ",",
@@ -114,12 +125,23 @@ fs.createReadStream(inputFile)
     // Udalerri guztiak biltzen dituen JSONean sartu.
     json_udalerriak.udalerriak.push(udalerria);
 
+    json_udalerriak.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
+
     if (errenkada["TH"] === "ARABA-�LAVA") {
+
         json_udalerriak_araba.udalerriak.push(udalerria);
+
+        json_udalerriak_araba.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
+
     } else if (errenkada["TH"] === "BIZKAIA") {
         json_udalerriak_bizkaia.udalerriak.push(udalerria);
+
+        json_udalerriak_bizkaia.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
+
     } else if (errenkada["TH"] === "GIPUZKOA") {
         json_udalerriak_gipuzkoa.udalerriak.push(udalerria);
+
+        json_udalerriak_gipuzkoa.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
     }
 
 })
