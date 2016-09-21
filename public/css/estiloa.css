@@ -3,6 +3,12 @@ a {
     text-decoration: none;
 }
 
+.unitateak {
+    stroke: #777;
+    stroke-width: 0.33px;
+    stroke-linejoin: round;
+}
+
 .unitateak:hover {
     fill: #777;
 }
@@ -15,10 +21,11 @@ a {
 }
 
 .kanpo-mugak {
-    fill: none;
+    fill: #fff;
     stroke: #777;
     stroke-width: 2px;
     stroke-linejoin: round;
+    filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.4));
 }
 
 #kontainerra {

@@ -1,5 +1,14 @@
 (function() {
 
+    "use strict";
+
+    // http://stackoverflow.com/questions/14167863/how-can-i-bring-a-circle-to-the-front-with-d3
+    d3.selection.prototype.moveToFront = function() {
+        return this.each(function(){
+            this.parentNode.appendChild(this);
+        });
+    };
+
     // Zein herrialdetako datuak bistaratu nahi diren hemen zehazten da:
     // Aukerak:
     //		"araba"
@@ -366,12 +375,24 @@
                             .attr("d", path)
                             .attr("class", "eskualde-mugak");
 
+                        // Unitateak aurreko planora ekarri.
+                        svg.selectAll(".unitateak").each(function() {
+                            var sel = d3.select(this);
+                            sel.moveToFront();
+                        });
+
                         // Kanpo-mugak (a === b)
                         svg.append("path")
                             .datum(topojson.mesh(eh, eh.objects[herrialdeak[hautatutako_herrialdea].json_izena], function(a, b) { return a === b; }))
                             .attr("d", path)
                             .attr("class", "kanpo-mugak");
 
+                        // Unitateak aurreko planora ekarri.
+                        svg.selectAll(".unitateak").each(function() {
+                            var sel = d3.select(this);
+                            sel.moveToFront();
+                        });
+                            
                         bistaratuHerrienTaula(emaitzak1, emaitzak2);
                     });
                 });
