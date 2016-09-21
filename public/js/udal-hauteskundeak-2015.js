@@ -535,7 +535,7 @@
             katea = katea + "</tr>";
         });
 
-        var tbody = document.querySelector(".emaitzak-herriz-herri tbody");
+        var tbody = document.querySelector("#emaitzak-herriz-herri tbody");
 
         tbody.innerHTML = katea;
     }
