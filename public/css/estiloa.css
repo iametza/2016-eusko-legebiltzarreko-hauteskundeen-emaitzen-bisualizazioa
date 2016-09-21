@@ -43,8 +43,9 @@
 }
 
 .datuak {
-    display: none; /* Hasieran ezkutuan */
+    visibility: hidden; /* Hasieran ezkutuan */
     width: 580px;
+    height: 310px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -60,6 +61,7 @@
 .datuak-taula {
     float: left;
     margin-left: 50px;
+    margin-top: 20px;
 }
 
 .datuak-taula .eskuinekoa {
@@ -69,6 +71,7 @@
 .emaitzak-taula {
     float: right;
     margin-right: 25px;
+    margin-top: 20px;
 }
 
 .emaitzak-taula .kolorea {

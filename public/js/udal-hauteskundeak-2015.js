@@ -320,11 +320,11 @@
 
                             $(".daturik-ez").hide();
 
-                            $(".datuak").show();
+                            $(".datuak").css("visibility", "visible");
 
                         } else {
 
-                            $(".datuak").hide();
+                            $(".datuak").css("visibility", "hidden");
 
                             $(".daturik-ez").show();
 
