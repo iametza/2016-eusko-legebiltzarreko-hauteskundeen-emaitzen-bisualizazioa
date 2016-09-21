@@ -344,6 +344,7 @@
                     .attr("d", path)
                     .attr("class", "kanpo-mugak");
 
+                bistaratuHerrienTaula(emaitzak1, emaitzak2);
             });
 
         });
@@ -467,5 +468,16 @@
 
         $(".ehuneko-zuriak").text(borobildu2dezimaletara(100 * datuak.zuriak / datuak.hautesleak));
 
+    }
+
+    function bistaratuHerrienTaula(datuak1, datuak2) {
+
+        datuak2.udalerriak.forEach(function(element, index, array) {
+
+            console.log(element);
+
+            $("#herrietako-datuak").append("<p>" + element.izena + "</p>");
+
+        });
     }
 }());
