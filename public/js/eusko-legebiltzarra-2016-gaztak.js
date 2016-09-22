@@ -38,6 +38,9 @@
             },
             donut: {
                 title: "75"
+            },
+            legend: {
+                hide: true
             }
         });
 
