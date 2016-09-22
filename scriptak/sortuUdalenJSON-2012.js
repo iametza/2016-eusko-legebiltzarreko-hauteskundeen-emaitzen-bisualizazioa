@@ -90,14 +90,14 @@ fs.createReadStream(inputFile)
 
     alderdiak.forEach(function(element, index, array) {
 
-        element = normalizatuAlderdiarenIzenak(element);
+        var izen_normalizatua = normalizatuAlderdiarenIzenak(element);
 
         var botoak = parseInt(errenkada[element], 10) || 0;
 
-        emaitzak.push([element, botoak]);
+        emaitzak.push([izen_normalizatua, botoak]);
 
-        hautagaiak[element] = {
-            "izena": element,
+        hautagaiak[izen_normalizatua] = {
+            "izena": izen_normalizatua,
             "ehunekoa": (100 * botoak / errenkada["Hautesleak"]).toFixed(2),
             "botoak": botoak,
             "hautetsiak": null
