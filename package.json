@@ -4,7 +4,8 @@
   "description": "",
   "main": "sortuJSON-2012.js",
   "dependencies": {
-    "iconv-lite": "^0.4.13"
+    "iconv-lite": "^0.4.13",
+    "xml2js": "^0.4.17"
   },
   "devDependencies": {
     "csv-parse": "^1.1.7",
