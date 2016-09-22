@@ -2,7 +2,7 @@
 
     "use strict";
 
-    var herrialdeen_json = "datuak/2012/herrialdeak2012.json";
+    var herrialdeen_json = "datuak/2016/herrialdeak2016.json";
 
     d3.json(herrialdeen_json, function(error, emaitzak) {
 
