@@ -11,7 +11,7 @@ gulp.task('serve', function() {
         }
     });
 
-    gulp.watch(['index.html', 'css/**/*.css', 'js/**/*.js', 'csv/*.csv'], {cwd: 'public/'}, reload);
+    gulp.watch(['*.html', 'css/**/*.css', 'js/**/*.js', 'csv/*.csv'], {cwd: 'public/'}, reload);
 });
 
 gulp.task('kopiatuPublikora', function() {
