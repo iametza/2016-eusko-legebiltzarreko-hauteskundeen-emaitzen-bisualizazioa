@@ -92,20 +92,20 @@
     var herriz_herriko_taulako_alderdien_ordena = [
         "EH BILDU",
         "EAJ-PNV",
-        "PSE-EE/PSOE",
+        "PSE-EE",
         "PP"
     ];
 
     var herrialdeen_jsonak = [
         "datuak/2012/herrialdeak2012.json",
-        "datuak/2012/herrialdeak2012.json"
+        "datuak/2016/herrialdeak2016.json"
     ];
 
     var herrialdeak = {
         "gipuzkoa": {
             kodea: 20,
             datuakJSON_1: "datuak/2012/udalerriak2012-gipuzkoa.json",
-            datuakJSON_2: "datuak/2012/udalerriak2012-gipuzkoa.json",
+            datuakJSON_2: "datuak/2016/udalerriak2016-gipuzkoa.json",
             json_izena: "udalerriak-gipuzkoa",
             topoJSON: "topoJSON/udalerriak-gipuzkoa.json",
             proiekzioa: {
@@ -117,12 +117,11 @@
             },
             altuera: 535,
             zabalera: 680
-
         },
         "bizkaia": {
             kodea: 48,
             datuakJSON_1: "datuak/2012/udalerriak2012-bizkaia.json",
-            datuakJSON_2: "datuak/2012/udalerriak2012-bizkaia.json",
+            datuakJSON_2: "datuak/2016/udalerriak2016-bizkaia.json",
             json_izena: "udalerriak-bizkaia",
             topoJSON: "topoJSON/udalerriak-bizkaia.json",
             proiekzioa: {
@@ -138,7 +137,7 @@
         "araba": {
             kodea: "01",
             datuakJSON_1: "datuak/2012/udalerriak2012-araba.json",
-            datuakJSON_2: "datuak/2012/udalerriak2012-araba.json",
+            datuakJSON_2: "datuak/2016/udalerriak2016-araba.json",
             json_izena: "udalerriak-araba",
             topoJSON: "topoJSON/udalerriak-araba.json",
             proiekzioa: {
@@ -551,7 +550,7 @@
                     "<td>" + element.partehartzea + "</td>";
 
             herriz_herriko_taulako_alderdien_ordena.forEach(function(element2, index2, array2) {
-
+                
                 katea =  katea + "<td>" + element.hautagaiak[element2].botoak + "</td>";
             });
 

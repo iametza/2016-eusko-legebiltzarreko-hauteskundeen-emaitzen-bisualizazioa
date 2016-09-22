@@ -45,6 +45,17 @@ var ordenatuHerrienArrayaAlfabetikoki = function(a, b) {
     }
 };
 
+var normalizatuAlderdiarenIzenak = function(izena) {
+
+    switch (izena) {
+        case "PSE-EE(PSOE)":
+        case "PSE-EE/PSOE":
+            izena = "PSE-EE";
+            break;
+    }
+
+    return izena;
+}
 
 fs.readFile(inputFile, function(err, data) {
 
@@ -61,7 +72,7 @@ fs.readFile(inputFile, function(err, data) {
             var unitatea = {
                 "ordua": element["FECHAHORA"][0].split(" ")[1],
                 "zenbatua": element["PESCRU"][0],
-                "kodea": element["AMBITO"][0],
+                "kodea": element["AMBITO"][0].slice(-3),
                 "izena": element["DESCRIP"][0],
                 "zentsua": parseInt(element["CENSO"][0], 10),
                 "hautetsiak": null,
@@ -86,6 +97,8 @@ fs.readFile(inputFile, function(err, data) {
             element["PARTIDO"].forEach(function(element2, index2, array2) {
 
                 var botoak = parseInt(element2["VOTOS"][0], 10) || 0;
+
+                element2["SIGLAS"][0] = normalizatuAlderdiarenIzenak(element2["SIGLAS"][0]);
 
                 emaitzak.push([element2["SIGLAS"][0], botoak]);
 

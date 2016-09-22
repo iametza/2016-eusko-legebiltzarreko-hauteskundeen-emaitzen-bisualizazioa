@@ -61,6 +61,18 @@ var ordenatuHerrienArrayaAlfabetikoki = function(a, b) {
     }
 };
 
+var normalizatuAlderdiarenIzenak = function(izena) {
+
+    switch (izena) {
+        case "PSE-EE(PSOE)":
+        case "PSE-EE/PSOE":
+            izena = "PSE-EE";
+            break;
+    }
+
+    return izena;
+}
+
 fs.createReadStream(inputFile)
 .pipe(iconv.decodeStream("latin1"))
 .pipe(iconv.encodeStream("utf8"))
@@ -77,6 +89,8 @@ fs.createReadStream(inputFile)
     var emaitzak = [];
 
     alderdiak.forEach(function(element, index, array) {
+
+        element = normalizatuAlderdiarenIzenak(element);
 
         var botoak = parseInt(errenkada[element], 10) || 0;
 
@@ -145,7 +159,7 @@ fs.createReadStream(inputFile)
     json_udalerriak_araba.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
     json_udalerriak_bizkaia.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
     json_udalerriak_gipuzkoa.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
-    
+
     // JSON fitxategiak gorde.
     fs.writeFile(outputFile, JSON.stringify(json_udalerriak));
     fs.writeFile(outputFile_araba, JSON.stringify(json_udalerriak_araba));
