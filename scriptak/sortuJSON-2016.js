@@ -43,15 +43,28 @@ fs.readFile(inputFile, function(err, data) {
             var emaitzak = [];
 
             var unitatea = {
-                "errolda": parseInt(element["CENSO"][0], 10),
+                "ordua": element["FECHAHORA"][0].split(" ")[1],
+                "zenbatua": element["PESCRU"][0],
+                "kodea": element["AMBITO"][0],
+                "izena": element["DESCRIP"][0],
+                "zentsua": parseInt(element["CENSO"][0], 10),
+                "hautetsiak": null,
+                "partehartzea": (100 * parseInt(element["NVOTOS"][0], 10) / parseInt(element["CENSO"][0], 10)).toFixed(2),
                 "hautesleak": parseInt(element["NVOTOS"][0], 10),
                 "baliogabeak": parseInt(element["NNULOS"][0], 10),
                 "baliozkoak": parseInt(element["NVALIDOS"][0], 10),
                 "zuriak": parseInt(element["NBLANCOS"][0], 10),
-                "hautagaien_botoak": parseInt(element["NVALIDOS"][0], 10) - parseInt(element["NBLANCOS"][0], 10),
+                "hautagaien_b": parseInt(element["NVALIDOS"][0], 10) - parseInt(element["NBLANCOS"][0], 10),
                 "abstentzioa": parseInt(element["CENSO"][0], 10) - parseInt(element["NVOTOS"][0], 10),
+                "hautagai_kop": null,
                 "ordena": [],
-                "hautagaiak": {}
+                "hautagaiak": {},
+                "azkenaurrekoa": null,
+                "azkena": element["ESCULTIMO"][0],
+                "azkena_aukera1": element["ESCULTIMO1"][0],
+                "azkena_aukera1_botoak": element["VOTOSULT1"][0],
+                "azkena_aukera2": null,
+                "azkena_aukera2_botoak": null
             };
 
             element["PARTIDO"].forEach(function(element2, index2, array2) {
