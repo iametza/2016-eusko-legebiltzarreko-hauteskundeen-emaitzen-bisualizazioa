@@ -127,6 +127,8 @@ fs.createReadStream(inputFile)
         "hautagaiak": {}
     };
 
+    var emaitzak = [];
+
     guztira.errolda = guztira.errolda + parseInt(json_herrialdeak.araba.errolda, 10) + parseInt(json_herrialdeak.bizkaia.errolda, 10) + parseInt(json_herrialdeak.gipuzkoa.errolda, 10);
     guztira.hautesleak = guztira.hautesleak + parseInt(json_herrialdeak.araba.hautesleak, 10) + parseInt(json_herrialdeak.bizkaia.hautesleak, 10) + parseInt(json_herrialdeak.gipuzkoa.hautesleak, 10);
     guztira.baliogabeak = guztira.baliogabeak + parseInt(json_herrialdeak.araba.baliogabeak, 10) + parseInt(json_herrialdeak.bizkaia.baliogabeak, 10) + parseInt(json_herrialdeak.gipuzkoa.baliogabeak, 10);
@@ -139,6 +141,8 @@ fs.createReadStream(inputFile)
 
         var botoak = parseInt(json_herrialdeak.araba.hautagaiak[element].botoak, 10) + parseInt(json_herrialdeak.bizkaia.hautagaiak[element].botoak, 10) + parseInt(json_herrialdeak.gipuzkoa.hautagaiak[element].botoak, 10);
 
+        emaitzak.push([element, botoak]);
+
         guztira.hautagaiak[element] = {
             "izena": element,
             "ehunekoa": (100 * botoak / guztira.hautesleak).toFixed(2),
@@ -147,6 +151,18 @@ fs.createReadStream(inputFile)
         }
     });
 
+    emaitzak.sort(function(a, b) {
+        return b[1] - a[1];
+    });
+
+    emaitzak = emaitzak.map(function(element, index, array) {
+
+        return element[0];
+
+    });
+
+    guztira.ordena = emaitzak;
+    
     console.log(guztira);
 
     // JSON fitxategiak gorde.
