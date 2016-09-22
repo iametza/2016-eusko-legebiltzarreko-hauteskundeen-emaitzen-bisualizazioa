@@ -48,6 +48,18 @@ var ordenatuHerrienArrayaAlfabetikoki = function(a, b) {
     }
 };
 
+var normalizatuAlderdiarenIzenak = function(izena) {
+
+    switch (izena) {
+        case "PSE-EE(PSOE)":
+        case "PSE-EE/PSOE":
+            izena = "PSE-EE";
+            break;
+    }
+
+    return izena;
+}
+
 fs.createReadStream(inputFile)
 .pipe(iconv.decodeStream("latin1"))
 .pipe(iconv.encodeStream("utf8"))
@@ -64,12 +76,14 @@ fs.createReadStream(inputFile)
 
     alderdiak.forEach(function(element, index, array) {
 
+        var izen_normalizatua = normalizatuAlderdiarenIzenak(element);
+
         var botoak = parseInt(errenkada[element], 10) || 0;
 
-        emaitzak.push([element, botoak]);
+        emaitzak.push([izen_normalizatua, botoak]);
 
-        hautagaiak[element] = {
-            "izena": element,
+        hautagaiak[izen_normalizatua] = {
+            "izena": izen_normalizatua,
             "ehunekoa": (100 * botoak / errenkada["Hautesleak"]).toFixed(2),
             "botoak": botoak,
             "hautetsiak": null
@@ -139,7 +153,11 @@ fs.createReadStream(inputFile)
 
     alderdiak.forEach(function(element, index, array) {
 
-        var botoak = parseInt(json_herrialdeak.araba.hautagaiak[element].botoak, 10) + parseInt(json_herrialdeak.bizkaia.hautagaiak[element].botoak, 10) + parseInt(json_herrialdeak.gipuzkoa.hautagaiak[element].botoak, 10);
+        var izen_normalizatua = normalizatuAlderdiarenIzenak(element);
+
+        var botoak = parseInt(json_herrialdeak.araba.hautagaiak[izen_normalizatua].botoak, 10) +
+                     parseInt(json_herrialdeak.bizkaia.hautagaiak[izen_normalizatua].botoak, 10) +
+                     parseInt(json_herrialdeak.gipuzkoa.hautagaiak[izen_normalizatua].botoak, 10);
 
         emaitzak.push([element, botoak]);
 
