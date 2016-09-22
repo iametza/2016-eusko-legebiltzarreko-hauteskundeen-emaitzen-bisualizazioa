@@ -97,7 +97,7 @@ fs.createReadStream(inputFile)
         "ordena": emaitzak,
         "hautagaiak": hautagaiak
     }
-    
+
     switch (errenkada["EREMU"]) {
 
         case "ARABA/ÁLAVA":
@@ -114,6 +114,28 @@ fs.createReadStream(inputFile)
     }
 })
 .on("end", function() {
+
+    var guztira = {
+        "errolda": 0,
+        "hautesleak": 0,
+        "baliogabeak": 0,
+        "baliozkoak": 0,
+        "zuriak": 0,
+        "hautagaien_botoak": 0,
+        "abstentzioa": 0,
+        "ordena": [],
+        "hautagaiak": {}
+    };
+
+    guztira.errolda = guztira.errolda + parseInt(json_herrialdeak.araba.errolda, 10) + parseInt(json_herrialdeak.bizkaia.errolda, 10) + parseInt(json_herrialdeak.gipuzkoa.errolda, 10);
+    guztira.hautesleak = guztira.hautesleak + parseInt(json_herrialdeak.araba.hautesleak, 10) + parseInt(json_herrialdeak.bizkaia.hautesleak, 10) + parseInt(json_herrialdeak.gipuzkoa.hautesleak, 10);
+    guztira.baliogabeak = guztira.baliogabeak + parseInt(json_herrialdeak.araba.baliogabeak, 10) + parseInt(json_herrialdeak.bizkaia.baliogabeak, 10) + parseInt(json_herrialdeak.gipuzkoa.baliogabeak, 10);
+    guztira.baliozkoak = guztira.baliozkoak + parseInt(json_herrialdeak.araba.baliozkoak, 10) + parseInt(json_herrialdeak.bizkaia.baliozkoak, 10) + parseInt(json_herrialdeak.gipuzkoa.baliozkoak, 10);
+    guztira.zuriak = guztira.zuriak + parseInt(json_herrialdeak.araba.zuriak, 10) + parseInt(json_herrialdeak.bizkaia.zuriak, 10) + parseInt(json_herrialdeak.gipuzkoa.zuriak, 10);
+    guztira.hautagaien_botoak = guztira.hautagaien_botoak + parseInt(json_herrialdeak.araba.hautagaien_botoak, 10) + parseInt(json_herrialdeak.bizkaia.hautagaien_botoak, 10) + parseInt(json_herrialdeak.gipuzkoa.hautagaien_botoak, 10);
+    guztira.abstentzioa = guztira.abstentzioa + parseInt(json_herrialdeak.araba.abstentzioa, 10) + parseInt(json_herrialdeak.bizkaia.abstentzioa, 10) + parseInt(json_herrialdeak.gipuzkoa.abstentzioa, 10);
+
+    console.log(guztira);
 
     // JSON fitxategiak gorde.
     fs.writeFile(outputFile, JSON.stringify(json_herrialdeak));
