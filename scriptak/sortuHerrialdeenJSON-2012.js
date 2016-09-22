@@ -159,10 +159,10 @@ fs.createReadStream(inputFile)
                      parseInt(json_herrialdeak.bizkaia.hautagaiak[izen_normalizatua].botoak, 10) +
                      parseInt(json_herrialdeak.gipuzkoa.hautagaiak[izen_normalizatua].botoak, 10);
 
-        emaitzak.push([element, botoak]);
+        emaitzak.push([izen_normalizatua, botoak]);
 
-        guztira.hautagaiak[element] = {
-            "izena": element,
+        guztira.hautagaiak[izen_normalizatua] = {
+            "izena": izen_normalizatua,
             "ehunekoa": (100 * botoak / guztira.hautesleak).toFixed(2),
             "botoak": botoak,
             "hautetsiak": null
