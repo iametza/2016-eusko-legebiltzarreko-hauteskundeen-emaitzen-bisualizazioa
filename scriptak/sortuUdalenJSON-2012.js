@@ -128,28 +128,24 @@ fs.createReadStream(inputFile)
     // Udalerri guztiak biltzen dituen JSONean sartu.
     json_udalerriak.udalerriak.push(udalerria);
 
-    json_udalerriak.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
-
     if (errenkada["TH"] === "ARABA-ÁLAVA") {
-
         json_udalerriak_araba.udalerriak.push(udalerria);
-
-        json_udalerriak_araba.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
 
     } else if (errenkada["TH"] === "BIZKAIA") {
         json_udalerriak_bizkaia.udalerriak.push(udalerria);
 
-        json_udalerriak_bizkaia.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
-
     } else if (errenkada["TH"] === "GIPUZKOA") {
         json_udalerriak_gipuzkoa.udalerriak.push(udalerria);
-
-        json_udalerriak_gipuzkoa.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
     }
 
 })
 .on("end", function() {
 
+    json_udalerriak.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
+    json_udalerriak_araba.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
+    json_udalerriak_bizkaia.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
+    json_udalerriak_gipuzkoa.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
+    
     // JSON fitxategiak gorde.
     fs.writeFile(outputFile, JSON.stringify(json_udalerriak));
     fs.writeFile(outputFile_araba, JSON.stringify(json_udalerriak_araba));
