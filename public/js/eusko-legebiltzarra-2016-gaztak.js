@@ -10,19 +10,25 @@
             return console.error(error);
         }
 
+        bistaratuDonuta("#eae-donuta", emaitzak, "eae");
+        bistaratuDonuta("#araba-donuta", emaitzak, "araba");
+        bistaratuDonuta("#bizkaia-donuta", emaitzak, "bizkaia");
+        bistaratuDonuta("#gipuzkoa-donuta", emaitzak, "gipuzkoa");
+    });
+
+    function bistaratuDonuta(hautatzailea, emaitzak, zer) {
         var pareak_zero = [];
         var pareak = [];
 
-        console.log(emaitzak);
-
-        emaitzak.eae.ordena.forEach(function(element, index, array) {
+        emaitzak[zer].ordena.forEach(function(element, index, array) {
 
             pareak_zero.push([element, 0]);
-            pareak.push([element, emaitzak.eae.hautagaiak[element].botoak]);
+            pareak.push([element, emaitzak[zer].hautagaiak[element].botoak]);
 
         });
 
-        var chart = c3.generate({
+        var eae = c3.generate({
+            bindto: hautatzailea,
             data: {
                 columns: pareak_zero,
                 type : 'donut',
@@ -36,9 +42,9 @@
         });
 
         setTimeout(function () {
-            chart.load({
+            eae.load({
                 columns: pareak
             });
         }, 500);
-    });
+    }
 }());
