@@ -87,12 +87,12 @@ fs.createReadStream(inputFile)
     });
 
     herrialdea = {
-        "errolda": errenkada["Errolda"],
+        "zentsua": errenkada["Errolda"],
         "hautesleak": errenkada["Hautesleak"],
         "baliogabeak": errenkada["Baliogabeak"],
         "baliozkoak": errenkada["Baleko"],
         "zuriak": errenkada["Zuriak"],
-        "hautagaien_botoak": errenkada["Hautagaien B."],
+        "hautagaien_b": errenkada["Hautagaien B."],
         "abstentzioa": errenkada["Abstentzioa"],
         "ordena": emaitzak,
         "hautagaiak": hautagaiak
