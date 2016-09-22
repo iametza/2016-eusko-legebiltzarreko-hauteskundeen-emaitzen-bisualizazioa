@@ -22,7 +22,7 @@ gulp.task('kopiatuPublikora', function() {
     gulp.src(['bower_components/c3/c3.min.js',
               'bower_components/d3/d3.min.js',
               'bower_components/index.js',
-              'bower_components/topojson/topojson.js'], {
+              'bower_components/topojson/topojson.min.js'], {
                   base: 'bower_components'
     }).pipe(gulp.dest('public/js'));
 
