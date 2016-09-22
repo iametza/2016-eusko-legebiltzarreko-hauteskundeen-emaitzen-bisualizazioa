@@ -135,6 +135,18 @@ fs.createReadStream(inputFile)
     guztira.hautagaien_botoak = guztira.hautagaien_botoak + parseInt(json_herrialdeak.araba.hautagaien_botoak, 10) + parseInt(json_herrialdeak.bizkaia.hautagaien_botoak, 10) + parseInt(json_herrialdeak.gipuzkoa.hautagaien_botoak, 10);
     guztira.abstentzioa = guztira.abstentzioa + parseInt(json_herrialdeak.araba.abstentzioa, 10) + parseInt(json_herrialdeak.bizkaia.abstentzioa, 10) + parseInt(json_herrialdeak.gipuzkoa.abstentzioa, 10);
 
+    alderdiak.forEach(function(element, index, array) {
+
+        var botoak = parseInt(json_herrialdeak.araba.hautagaiak[element].botoak, 10) + parseInt(json_herrialdeak.bizkaia.hautagaiak[element].botoak, 10) + parseInt(json_herrialdeak.gipuzkoa.hautagaiak[element].botoak, 10);
+
+        guztira.hautagaiak[element] = {
+            "izena": element,
+            "ehunekoa": (100 * botoak / guztira.hautesleak).toFixed(2),
+            "botoak": botoak,
+            "hautetsiak": null
+        }
+    });
+
     console.log(guztira);
 
     // JSON fitxategiak gorde.
