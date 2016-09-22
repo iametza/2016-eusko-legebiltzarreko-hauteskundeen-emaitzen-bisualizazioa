@@ -18,29 +18,6 @@ var json_herrialdeak = {
     "gipuzkoa": {}
 };
 
-// 2016ko emaitza ofizialetan agertzen diren ordenean.
-var alderdiak = [
-    "EAJ-PNV",
-    "PP",
-    "EB-B",
-    "PH",
-    "EK-PCPE",
-    "POSI",
-    "UCE",
-    "PSE-EE/PSOE",
-    "PACMA/ATTKA",
-    "PUM+J",
-    "PFYV",
-    "UPYD",
-    "EQUO",
-    "IU-LV",
-    "EB-AZ",
-    "ONGI ETORRI",
-    "EH BILDU",
-    "PYC",
-    "HARTOS.ORG"
-];
-
 var ordenatuHerrienArrayaAlfabetikoki = function(a, b) {
 
     if (a.izena < b.izena) {
@@ -60,50 +37,69 @@ fs.readFile(inputFile, function(err, data) {
 
     parser.parseString(data, function (err, result) {
 
-        var herrialdea = {};
+        result["SalidaDatos"]["SalidaXML"].forEach(function(element, index, array) {
 
-        var hautagaiak = {};
-        var emaitzak = [];
+            var hautagaiak = {};
+            var emaitzak = [];
 
-        // EAEko datuak.
-        var guztira = {
-            "errolda": parseInt(result["SalidaDatos"]["SalidaXML"][0]["CENSO"][0], 10),
-            "hautesleak": parseInt(result["SalidaDatos"]["SalidaXML"][0]["NVOTOS"][0], 10),
-            "baliogabeak": parseInt(result["SalidaDatos"]["SalidaXML"][0]["NNULOS"][0], 10),
-            "baliozkoak": parseInt(result["SalidaDatos"]["SalidaXML"][0]["NVALIDOS"][0], 10),
-            "zuriak": parseInt(result["SalidaDatos"]["SalidaXML"][0]["NBLANCOS"][0], 10),
-            "hautagaien_botoak": parseInt(result["SalidaDatos"]["SalidaXML"][0]["NVALIDOS"][0], 10) - parseInt(result["SalidaDatos"]["SalidaXML"][0]["NBLANCOS"][0], 10),
-            "abstentzioa": parseInt(result["SalidaDatos"]["SalidaXML"][0]["CENSO"][0], 10) - parseInt(result["SalidaDatos"]["SalidaXML"][0]["NVOTOS"][0], 10),
-            "ordena": [],
-            "hautagaiak": {}
-        };
+            var unitatea = {
+                "errolda": parseInt(element["CENSO"][0], 10),
+                "hautesleak": parseInt(element["NVOTOS"][0], 10),
+                "baliogabeak": parseInt(element["NNULOS"][0], 10),
+                "baliozkoak": parseInt(element["NVALIDOS"][0], 10),
+                "zuriak": parseInt(element["NBLANCOS"][0], 10),
+                "hautagaien_botoak": parseInt(element["NVALIDOS"][0], 10) - parseInt(element["NBLANCOS"][0], 10),
+                "abstentzioa": parseInt(element["CENSO"][0], 10) - parseInt(element["NVOTOS"][0], 10),
+                "ordena": [],
+                "hautagaiak": {}
+            };
 
-        result["SalidaDatos"]["SalidaXML"][0]["PARTIDO"].forEach(function(element, index, array) {
+            element["PARTIDO"].forEach(function(element2, index2, array2) {
 
-            var botoak = parseInt(element["VOTOS"][0], 10) || 0;
+                var botoak = parseInt(element2["VOTOS"][0], 10) || 0;
 
-            emaitzak.push([element["SIGLAS"][0], botoak]);
+                emaitzak.push([element2["SIGLAS"][0], botoak]);
 
-            hautagaiak[element["SIGLAS"][0]] = {
-                "izena": element["SIGLAS"][0],
-                "ehunekoa": parseFloat(element["PORCENTAJE"][0].replace(",", ".")).toFixed(2),
-                "botoak": botoak,
-                "hautetsiak": parseInt(element["ESCAÑOS"][0], 10)
+                hautagaiak[element2["SIGLAS"][0]] = {
+                    "izena": element2["SIGLAS"][0],
+                    "ehunekoa": parseFloat(element2["PORCENTAJE"][0].replace(",", ".")).toFixed(2),
+                    "botoak": botoak,
+                    "hautetsiak": parseInt(element2["ESCAÑOS"][0], 10)
+                }
+            });
+
+            emaitzak.sort(function(a, b) {
+                return b[1] - a[1];
+            });
+
+            emaitzak = emaitzak.map(function(element, index, array) {
+
+                return element[0];
+
+            });
+
+            unitatea["ordena"] = emaitzak;
+            unitatea["hautagaiak"] = hautagaiak;
+
+            switch (index) {
+
+                case 0:
+                    json_herrialdeak["eae"] = unitatea;
+                    break;
+
+                case 1:
+                    json_herrialdeak["araba"] = unitatea;
+                    break;
+
+                case 2:
+                    json_herrialdeak["bizkaia"] = unitatea;
+                    break;
+
+                case 3:
+                    json_herrialdeak["gipuzkoa"] = unitatea;
+                    break;
             }
         });
-
-        emaitzak.sort(function(a, b) {
-            return b[1] - a[1];
-        });
-
-        emaitzak = emaitzak.map(function(element, index, array) {
-
-            return element[0];
-
-        });
-
-        guztira["ordena"] = emaitzak;
-        guztira["hautagaiak"] = hautagaiak;
 
         /*switch (errenkada["EREMU"]) {
 
@@ -119,8 +115,6 @@ fs.readFile(inputFile, function(err, data) {
                 json_herrialdeak["gipuzkoa"] = herrialdea;
                 break;
         }*/
-
-        json_herrialdeak["eae"] = guztira;
 
         // JSON fitxategiak gorde.
         fs.writeFile(outputFile_herrialdeak, JSON.stringify(json_herrialdeak));
