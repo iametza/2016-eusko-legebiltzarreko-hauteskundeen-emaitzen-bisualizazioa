@@ -18,6 +18,22 @@ var json_herrialdeak = {
     "gipuzkoa": {}
 };
 
+var json_udalerriak = {
+    "udalerriak": []
+}
+
+var json_udalerriak_araba = {
+    "udalerriak": []
+}
+
+var json_udalerriak_bizkaia = {
+    "udalerriak": []
+}
+
+var json_udalerriak_gipuzkoa = {
+    "udalerriak": []
+}
+
 var ordenatuHerrienArrayaAlfabetikoki = function(a, b) {
 
     if (a.izena < b.izena) {
@@ -111,25 +127,36 @@ fs.readFile(inputFile, function(err, data) {
                 case 3:
                     json_herrialdeak["gipuzkoa"] = unitatea;
                     break;
+
+                default:
+
+                    // Udalerri guztiak biltzen dituen JSONean sartu.
+                    json_udalerriak.udalerriak.push(unitatea);
+
+                    if (element["AMBITO"][0].substring(0, 2) === "01") {
+                        json_udalerriak_araba.udalerriak.push(unitatea);
+
+                    } else if (element["AMBITO"][0].substring(0, 2) === "48") {
+                        json_udalerriak_bizkaia.udalerriak.push(unitatea);
+
+                    } else if (element["AMBITO"][0].substring(0, 2) === "20") {
+                        json_udalerriak_gipuzkoa.udalerriak.push(unitatea);
+                    }
+
+                    break;
             }
         });
 
-        /*switch (errenkada["EREMU"]) {
-
-            case "ARABA/ÁLAVA":
-                json_herrialdeak["araba"] = herrialdea;
-                break;
-
-            case "BIZKAIA":
-                json_herrialdeak["bizkaia"] = herrialdea;
-                break;
-
-            case "GIPUZKOA":
-                json_herrialdeak["gipuzkoa"] = herrialdea;
-                break;
-        }*/
+        json_udalerriak.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
+        json_udalerriak_araba.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
+        json_udalerriak_bizkaia.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
+        json_udalerriak_gipuzkoa.udalerriak.sort(ordenatuHerrienArrayaAlfabetikoki);
 
         // JSON fitxategiak gorde.
         fs.writeFile(outputFile_herrialdeak, JSON.stringify(json_herrialdeak));
+        fs.writeFile(outputFile_udalerriak, JSON.stringify(json_udalerriak));
+        fs.writeFile(outputFile_araba, JSON.stringify(json_udalerriak_araba));
+        fs.writeFile(outputFile_bizkaia, JSON.stringify(json_udalerriak_bizkaia));
+        fs.writeFile(outputFile_gipuzkoa, JSON.stringify(json_udalerriak_gipuzkoa));
     });
 });
