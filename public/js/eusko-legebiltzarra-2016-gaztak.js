@@ -10,13 +10,13 @@
             return console.error(error);
         }
 
-        bistaratuDonuta("#eae-donuta", emaitzak, "eae");
-        bistaratuDonuta("#araba-donuta", emaitzak, "araba");
-        bistaratuDonuta("#bizkaia-donuta", emaitzak, "bizkaia");
-        bistaratuDonuta("#gipuzkoa-donuta", emaitzak, "gipuzkoa");
+        bistaratuDonuta("#eae-donuta", emaitzak, "eae", 75);
+        bistaratuDonuta("#araba-donuta", emaitzak, "araba", 25);
+        bistaratuDonuta("#bizkaia-donuta", emaitzak, "bizkaia", 25);
+        bistaratuDonuta("#gipuzkoa-donuta", emaitzak, "gipuzkoa", 25);
     });
 
-    function bistaratuDonuta(hautatzailea, emaitzak, zer) {
+    function bistaratuDonuta(hautatzailea, emaitzak, zer, title) {
         var pareak_zero = [];
         var pareak = [];
 
@@ -37,7 +37,7 @@
                 onmouseout: function (d, i) { console.log("onmouseout", d, i); }
             },
             donut: {
-                title: "75"
+                title: title
             },
             legend: {
                 hide: true
