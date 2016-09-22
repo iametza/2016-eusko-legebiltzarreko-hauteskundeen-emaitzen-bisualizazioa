@@ -162,8 +162,8 @@ fs.createReadStream(inputFile)
     });
 
     guztira.ordena = emaitzak;
-    
-    console.log(guztira);
+
+    json_herrialdeak["eae"] = guztira;
 
     // JSON fitxategiak gorde.
     fs.writeFile(outputFile, JSON.stringify(json_herrialdeak));
