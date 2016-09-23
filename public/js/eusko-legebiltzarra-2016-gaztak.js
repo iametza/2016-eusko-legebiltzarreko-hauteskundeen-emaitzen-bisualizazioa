@@ -32,7 +32,7 @@
             bistaratuDonuta("#bizkaia-donuta", emaitzak2, "bizkaia", 25);
             bistaratuDonuta("#gipuzkoa-donuta", emaitzak2, "gipuzkoa", 25);
 
-            bistaratuBarrak("#gipuzkoa-barrak", emaitzak1, emaitzak2, "gipuzkoa", 5);
+            bistaratuBarrak("#gipuzkoa-barrak", emaitzak1, emaitzak2, "eae", 5);
 
         });
     });
