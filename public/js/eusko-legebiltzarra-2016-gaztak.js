@@ -97,20 +97,20 @@
             bistaratuDonuta("#bizkaia-donuta", emaitzak2, "bizkaia", 25);
             bistaratuDonuta("#gipuzkoa-donuta", emaitzak2, "gipuzkoa", 25);
 
-            beteTaula("eae", emaitzak1, emaitzak2);
-            beteTaula("araba", emaitzak1, emaitzak2);
-            beteTaula("bizkaia", emaitzak1, emaitzak2);
-            beteTaula("gipuzkoa", emaitzak1, emaitzak2);
+            beteTaula("eae", emaitzak1, emaitzak2, 5);
+            beteTaula("araba", emaitzak1, emaitzak2, 5);
+            beteTaula("bizkaia", emaitzak1, emaitzak2, 5);
+            beteTaula("gipuzkoa", emaitzak1, emaitzak2, 5);
         });
     });
 
-    function beteTaula(zer, datuak1, datuak2) {
+    function beteTaula(zer, datuak1, datuak2, zenbat_alderdi_bistaratu) {
 
 		var katea = "";
 
 		var aldea = "";
 
-        for (var i = 0; i < datuak2[zer].ordena.length; i++) {
+        for (var i = 0; i < zenbat_alderdi_bistaratu; i++) {
 
             // Botoak lortu dituzten alderdiak bakarrik bistaratu.
 
