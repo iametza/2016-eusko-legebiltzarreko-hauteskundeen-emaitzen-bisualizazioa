@@ -2,7 +2,8 @@
 
     "use strict";
 
-    var herrialdeen_json = "datuak/2016/herrialdeak2016.json";
+    var herrialdeen_json1 = "datuak/2012/herrialdeak2012.json";
+    var herrialdeen_json2 = "datuak/2016/herrialdeak2016.json";
 
     var koloreak = {
         "EH BILDU": "#b3c801",
@@ -14,18 +15,26 @@
         "PODEMOS": "#6B1F5F"
     }
 
-    d3.json(herrialdeen_json, function(error, emaitzak) {
+    d3.json(herrialdeen_json1, function(error, emaitzak1) {
 
         if (error) {
             return console.error(error);
         }
 
-        bistaratuDonuta("#eae-donuta", emaitzak, "eae", 75);
-        bistaratuDonuta("#araba-donuta", emaitzak, "araba", 25);
-        bistaratuDonuta("#bizkaia-donuta", emaitzak, "bizkaia", 25);
-        bistaratuDonuta("#gipuzkoa-donuta", emaitzak, "gipuzkoa", 25);
+        d3.json(herrialdeen_json2, function(error, emaitzak2) {
 
-        bistaratuBarrak("#gipuzkoa-barrak", emaitzak, emaitzak, "gipuzkoa", 5);
+            if (error) {
+                return console.error(error);
+            }
+
+            bistaratuDonuta("#eae-donuta", emaitzak2, "eae", 75);
+            bistaratuDonuta("#araba-donuta", emaitzak2, "araba", 25);
+            bistaratuDonuta("#bizkaia-donuta", emaitzak2, "bizkaia", 25);
+            bistaratuDonuta("#gipuzkoa-donuta", emaitzak2, "gipuzkoa", 25);
+
+            bistaratuBarrak("#gipuzkoa-barrak", emaitzak1, emaitzak2, "gipuzkoa", 5);
+
+        });
     });
 
     function bistaratuBarrak(hautatzailea, emaitzak1, emaitzak2, zer, zenbat_barra_bistaratu) {
