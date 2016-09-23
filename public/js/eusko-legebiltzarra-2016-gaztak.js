@@ -25,10 +25,10 @@
         bistaratuDonuta("#bizkaia-donuta", emaitzak, "bizkaia", 25);
         bistaratuDonuta("#gipuzkoa-donuta", emaitzak, "gipuzkoa", 25);
 
-        bistaratuBarrak("#gipuzkoa-barrak", emaitzak, emaitzak, "gipuzkoa");
+        bistaratuBarrak("#gipuzkoa-barrak", emaitzak, emaitzak, "gipuzkoa", 5);
     });
 
-    function bistaratuBarrak(hautatzailea, emaitzak1, emaitzak2, zer) {
+    function bistaratuBarrak(hautatzailea, emaitzak1, emaitzak2, zer, zenbat_barra_bistaratu) {
 
         var array2012 = ["2012"];
         var array2016 = ["2016"];
@@ -36,7 +36,7 @@
         // Tooltip-ean ze alderdiren datuak diren bistaratzeko.
         var indizea = 0;
 
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < zenbat_barra_bistaratu; i++) {
 
             array2012.push(emaitzak1[zer].hautagaiak[emaitzak2[zer].ordena[i]].botoak);
             array2016.push(emaitzak2[zer].hautagaiak[emaitzak2[zer].ordena[i]].botoak);
@@ -66,7 +66,7 @@
             tooltip: {
                 format: {
                     title: function(value, ratio, id) {
-                        
+
                         // onmouseover gertaeran gordetako indizeari dagokion alderdiaren izena bistaratu.
                         return emaitzak2[zer].ordena[indizea];
                     }
