@@ -92,10 +92,10 @@
                 return console.error(error);
             }
 
-            //bistaratuDonuta("#eae-donuta", emaitzak2, "eae", 75);
-            //bistaratuDonuta("#araba-donuta", emaitzak2, "araba", 25);
-            //bistaratuDonuta("#bizkaia-donuta", emaitzak2, "bizkaia", 25);
-            //bistaratuDonuta("#gipuzkoa-donuta", emaitzak2, "gipuzkoa", 25);
+            bistaratuDonuta("#eae-donuta", emaitzak2, "eae", 75);
+            bistaratuDonuta("#araba-donuta", emaitzak2, "araba", 25);
+            bistaratuDonuta("#bizkaia-donuta", emaitzak2, "bizkaia", 25);
+            bistaratuDonuta("#gipuzkoa-donuta", emaitzak2, "gipuzkoa", 25);
 
             bistaratuBarrak("#gipuzkoa-barrak", emaitzak1, emaitzak2, "eae", 5);
 
@@ -122,8 +122,7 @@
 
 				if ((datuak2[zer].hautagaiak[datuak2[zer].ordena[i]]) &&
                     (datuak2[zer].hautagaiak[datuak2[zer].ordena[i]].izena === datuak1[zer].hautagaiak[datuak1[zer].ordena[j]].izena)) {
-                    console.log(datuak2[zer].hautagaiak[datuak2[zer].ordena[i]]);
-                    console.log(datuak1[zer].hautagaiak[datuak1[zer].ordena[j]]);
+
 					aldea = datuak2[zer].hautagaiak[datuak2[zer].ordena[i]].hautetsiak - datuak1[zer].hautagaiak[datuak1[zer].ordena[j]].hautetsiak;
 
 				}
@@ -236,7 +235,7 @@
 
         $.each(hautagaiak, function(index, value) {
 
-            koloreak[index] = value;
+            koloreak[index] = value.kolorea;
         });
 
         emaitzak[zer].ordena.forEach(function(element, index, array) {
@@ -245,7 +244,7 @@
             pareak.push([element, emaitzak[zer].hautagaiak[element].hautetsiak]);
 
         });
-
+        
         var eae = c3.generate({
             bindto: hautatzailea,
             data: {
