@@ -52,6 +52,18 @@ var normalizatuAlderdiarenIzenak = function(izena) {
         case "PSE-EE/PSOE":
             izena = "PSE-EE";
             break;
+        case "UPYD":
+            izena = "UPyD";
+            break;
+        case "EB-AZ":
+            izena = "Eb-Az";
+            break;
+        case "HARTOS.ORG":
+            izena = "HARTOS.org";
+            break;
+        case "PFYV":
+            izena = "PFyV";
+            break;
     }
 
     return izena;
