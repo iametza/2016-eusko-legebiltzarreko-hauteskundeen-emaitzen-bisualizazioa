@@ -9,13 +9,35 @@
         });
     };
 
+    // http://stackoverflow.com/a/3855394/2855012
+    function eskuratuURLParametroak(a) {
+
+        if (a === "") {
+            return {};
+        }
+
+        var b = {};
+
+        for (var i = 0; i < a.length; ++i) {
+            var p=a[i].split('=', 2);
+            if (p.length == 1) {
+                b[p[0]] = "";
+            } else {
+                b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+            }
+        }
+        return b;
+    }
+
+    var url_parametroak = eskuratuURLParametroak(window.location.search.substr(1).split('&'));
+
     // Zein herrialdetako datuak bistaratu nahi diren hemen zehazten da:
     // Aukerak:
     //		"araba"
     // 		"bizkaia"
     //		"gipuzkoa"
     //		"nafarroa"
-    var hautatutako_herrialdea = "bizkaia";
+    var hautatutako_herrialdea = url_parametroak.herrialdea ? url_parametroak.herrialdea : "bizkaia";
 
     var hautagaiak = {
         "EH BILDU": {
