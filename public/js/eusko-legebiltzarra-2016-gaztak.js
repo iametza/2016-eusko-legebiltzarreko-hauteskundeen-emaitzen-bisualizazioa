@@ -2,6 +2,34 @@
 
     "use strict";
 
+    // http://stackoverflow.com/a/3855394/2855012
+    function eskuratuURLParametroak(a) {
+
+        if (a === "") {
+            return {};
+        }
+
+        var b = {};
+
+        for (var i = 0; i < a.length; ++i) {
+            var p=a[i].split('=', 2);
+            if (p.length == 1) {
+                b[p[0]] = "";
+            } else {
+                b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+            }
+        }
+        return b;
+    }
+
+    var url_parametroak = eskuratuURLParametroak(window.location.search.substr(1).split('&'));
+
+    var hiru_zutabetara = url_parametroak.hiru_zutabetara === "true" ? true : false;
+
+    if (hiru_zutabetara) {
+        $("#kontainerra").addClass("hiru-zutabetara");
+    }
+    
     var herrialdeen_json1 = "datuak/2012/herrialdeak2012.json";
     var herrialdeen_json2 = "datuak/2016/herrialdeak2016.json";
 
