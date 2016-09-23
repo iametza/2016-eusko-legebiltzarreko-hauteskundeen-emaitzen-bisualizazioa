@@ -26,3 +26,25 @@
     text-align: center;
     font-weight: bold;
 }
+.datuak-taula .irudia img {
+	width: 30px;
+}
+
+.datuak-taula .botoak {
+	text-align: right;
+	width: 60px;
+}
+
+.datuak-taula .ahulkiak {
+	text-align: right;
+	width: 30px;
+}
+
+.datuak-taula .aldea {
+	text-align: right;
+	width: 50px;
+}
+
+.datuak-taula .eskuina {
+	text-align: right;
+}
