@@ -8,11 +8,11 @@
     var hautagaiak = {
         "EH BILDU": {
             kolorea: "#b3c801",
-            irudia: "img/ehbildu.jpg"
+            irudia: "img/eh-bildu.gif"
         },
         "EAJ-PNV": {
             kolorea: "#008336",
-            irudia: "img/eaj-pnv.png"
+            irudia: "img/eaj-pnv.gif"
         },
         "PSE-EE": {
             kolorea: "#ed1b24",
@@ -20,11 +20,11 @@
         },
         "PP": {
             kolorea: "#0BB2FF",
-            irudia: "img/pp.png"
+            irudia: "img/pp.gif"
         },
         "UPyD": {
             kolorea: "#E4007D",
-            irudia: "img/upyd.png"
+            irudia: "img/upyd.gif"
         },
         "CIUDADANOS": {
             kolorea: "#F78934",
@@ -36,47 +36,47 @@
         },
         "IU-LV": {
             kolorea: "#4B4B49",
-            irudia: "img/irabazi.png"
+            irudia: "img/iu.gif"
         },
         "EB-B": {
             kolorea: "#4B4B49",
-            irudia: "img/irabazi.png"
+            irudia: "img/eb.gif"
         },
         "EQUO": {
-            irudia: "img/equo.jpeg"
+            irudia: "img/equo.gif"
         },
         "Eb-Az": {
-            irudia: "img/equo.jpeg"
+            irudia: "img/eb-az.gif"
         },
         "PACMA/ATTKA": {
-            irudia: "img/equo.jpeg"
+            irudia: "img/pacma.gif"
         },
         "HARTOS.org": {
-            irudia: "img/equo.jpeg"
+            irudia: "img/hartos.gif"
         },
         "PUM+J": {
-            irudia: "img/equo.jpeg"
+            irudia: "img/mj.gif"
         },
         "PH": {
-            irudia: "img/equo.jpeg"
+            irudia: "img/ph.gif"
         },
         "PFyV": {
-            irudia: "img/equo.jpeg"
+            irudia: "img/pfyv.gif"
         },
         "POSI": {
-            irudia: "img/equo.jpeg"
+            irudia: "img/posi.gif"
         },
         "UCE": {
-            irudia: "img/equo.jpeg"
+            irudia: "img/uce.gif"
         },
         "EK-PCPE": {
-            irudia: "img/equo.jpeg"
+            irudia: "img/pcpe.gif"
         },
         "ONGI ETORRI": {
-            irudia: "img/equo.jpeg"
+            irudia: "img/ongi-etorri.gif"
         },
         "PYC": {
-            irudia: "img/equo.jpeg"
+            irudia: "img/pyc.gif"
         }
     }
 
