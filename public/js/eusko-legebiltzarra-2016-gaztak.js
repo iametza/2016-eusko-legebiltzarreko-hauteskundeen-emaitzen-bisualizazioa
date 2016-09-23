@@ -73,6 +73,13 @@
                 }
             },
             axis: {
+                x: {
+                    tick: {
+                        format: function(d) {
+                            return emaitzak2[zer].ordena[d];
+                        }
+                    }
+                },
                 y: {
                     show: false
                 }
