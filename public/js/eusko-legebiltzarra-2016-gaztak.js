@@ -71,7 +71,8 @@
                 onmouseover: function (d, i) {
                     // Tooltip-ean ze alderdiren datuak diren bistaratzeko.
                     indizea = d.index;
-                }
+                },
+                labels: true
             },
             bar: {
                 width: {
