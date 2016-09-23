@@ -4,6 +4,16 @@
 
     var herrialdeen_json = "datuak/2016/herrialdeak2016.json";
 
+    var koloreak = {
+        "EH BILDU": "#b3c801",
+        "EAJ-PNV": "#008336",
+        "PSE-EE": "#ed1b24",
+        "PP": "#0BB2FF",
+        "UPYD": "#E4007D",
+        "CIUDADANOS": "#F78934",
+        "PODEMOS": "#6B1F5F"
+    }
+
     d3.json(herrialdeen_json, function(error, emaitzak) {
 
         if (error) {
@@ -32,6 +42,7 @@
             data: {
                 columns: pareak_zero,
                 type : 'donut',
+                colors: koloreak,
                 onclick: function (d, i) {
                     //console.log("onclick", d, i);
                 },
