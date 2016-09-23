@@ -36,12 +36,12 @@
         // Tooltip-ean ze alderdiren datuak diren bistaratzeko.
         var indizea = 0;
 
-        emaitzak2[zer].ordena.forEach(function(element, index, array) {
+        for (var i = 0; i < 5; i++) {
 
-            array2012.push(emaitzak1[zer].hautagaiak[element].botoak);
-            array2016.push(emaitzak2[zer].hautagaiak[element].botoak);
+            array2012.push(emaitzak1[zer].hautagaiak[emaitzak2[zer].ordena[i]].botoak);
+            array2016.push(emaitzak2[zer].hautagaiak[emaitzak2[zer].ordena[i]].botoak);
 
-        });
+        }
 
         var chart = c3.generate({
             bindto: hautatzailea,
@@ -66,6 +66,8 @@
             tooltip: {
                 format: {
                     title: function(value, ratio, id) {
+                        
+                        // onmouseover gertaeran gordetako indizeari dagokion alderdiaren izena bistaratu.
                         return emaitzak2[zer].ordena[indizea];
                     }
                 }
