@@ -23,7 +23,7 @@
         emaitzak[zer].ordena.forEach(function(element, index, array) {
 
             pareak_zero.push([element, 0]);
-            pareak.push([element, emaitzak[zer].hautagaiak[element].botoak]);
+            pareak.push([element, emaitzak[zer].hautagaiak[element].hautetsiak]);
 
         });
 
@@ -37,7 +37,12 @@
                 onmouseout: function (d, i) { console.log("onmouseout", d, i); }
             },
             donut: {
-                title: title
+                title: title,
+                label: {
+                    format: function (value) {
+                        return value;
+                    }
+                }
             },
             legend: {
                 hide: true
