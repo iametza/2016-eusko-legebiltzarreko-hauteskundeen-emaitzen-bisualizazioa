@@ -71,6 +71,11 @@
                         return emaitzak2[zer].ordena[indizea];
                     }
                 }
+            },
+            axis: {
+                y: {
+                    show: false
+                }
             }
         });
     }
