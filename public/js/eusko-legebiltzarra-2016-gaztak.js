@@ -24,7 +24,38 @@
         bistaratuDonuta("#araba-donuta", emaitzak, "araba", 25);
         bistaratuDonuta("#bizkaia-donuta", emaitzak, "bizkaia", 25);
         bistaratuDonuta("#gipuzkoa-donuta", emaitzak, "gipuzkoa", 25);
+
+        bistaratuBarrak("#gipuzkoa-barrak", emaitzak, emaitzak, "gipuzkoa");
     });
+
+    function bistaratuBarrak(hautatzailea, emaitzak1, emaitzak2, zer) {
+
+        var chart = c3.generate({
+            bindto: hautatzailea,
+            data: {
+                columns: [
+                    ['2012', 30, 200, 100, 400, 150, 250],
+                    ['2016', 130, 100, 140, 200, 150, 50]
+                ],
+                type: 'bar',
+                labels: {
+                    format: function (v, id, i, j) {
+                        console.log(v);
+                        console.log(id);
+                        console.log(i);
+                        console.log(j);
+                    }
+                }
+            },
+            bar: {
+                width: {
+                    ratio: 0.5 // this makes bar width 50% of length between ticks
+                }
+                // or
+                //width: 100 // this makes bar width 100px
+            }
+        });
+    }
 
     function bistaratuDonuta(hautatzailea, emaitzak, zer, title) {
         var pareak_zero = [];
