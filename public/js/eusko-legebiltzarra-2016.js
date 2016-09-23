@@ -37,7 +37,7 @@
     // 		"bizkaia"
     //		"gipuzkoa"
     //		"nafarroa"
-    var hautatutako_herrialdea = url_parametroak.herrialdea ? url_parametroak.herrialdea : "bizkaia";
+    var hautatutako_herrialdea = url_parametroak.herrialdea ? url_parametroak.herrialdea : "araba";
 
     var hautagaiak = {
         "EH BILDU": {
