@@ -97,8 +97,6 @@
             bistaratuDonuta("#bizkaia-donuta", emaitzak2, "bizkaia", 25);
             bistaratuDonuta("#gipuzkoa-donuta", emaitzak2, "gipuzkoa", 25);
 
-            bistaratuBarrak("#gipuzkoa-barrak", emaitzak1, emaitzak2, "eae", 5);
-
             beteTaula("eae", emaitzak1, emaitzak2);
             beteTaula("araba", emaitzak1, emaitzak2);
             beteTaula("bizkaia", emaitzak1, emaitzak2);
@@ -155,78 +153,6 @@
 
 	}
 
-    function bistaratuBarrak(hautatzailea, emaitzak1, emaitzak2, zer, zenbat_barra_bistaratu) {
-
-        var array2012 = ["2012"];
-        var array2016 = ["2016"];
-
-        // Tooltip-ean ze alderdiren datuak diren bistaratzeko.
-        var indizea = 0;
-
-        for (var i = 0; i < zenbat_barra_bistaratu; i++) {
-
-            array2012.push(emaitzak1[zer].hautagaiak[emaitzak2[zer].ordena[i]].botoak);
-            array2016.push(emaitzak2[zer].hautagaiak[emaitzak2[zer].ordena[i]].botoak);
-
-        }
-
-        var chart = c3.generate({
-            bindto: hautatzailea,
-            data: {
-                columns: [
-                    array2012,
-                    array2016
-                ],
-                color: function (color, d) {
-
-                    // d will be 'id' when called for legends
-                    if (d.index >= 0) {
-                        return hautagaiak[emaitzak2[zer].ordena[d.index]].kolorea;
-                    }
-                    return color;
-                },
-                type: 'bar',
-                onmouseover: function (d, i) {
-                    // Tooltip-ean ze alderdiren datuak diren bistaratzeko.
-                    indizea = d.index;
-                },
-                labels: true
-            },
-            bar: {
-                width: {
-                    ratio: 0.85 // this makes bar width 50% of length between ticks
-                }
-                // or
-                //width: 100 // this makes bar width 100px
-            },
-            legend: {
-                show: false
-            },
-            tooltip: {
-                format: {
-                    title: function(value, ratio, id) {
-
-                        // onmouseover gertaeran gordetako indizeari dagokion alderdiaren izena bistaratu.
-                        return emaitzak2[zer].ordena[indizea];
-                    }
-                }
-            },
-            axis: {
-                x: {
-                    tick: {
-                        format: function(d) {
-                            return emaitzak2[zer].ordena[d];
-                        },
-                        outer: false
-                    }
-                },
-                y: {
-                    show: false
-                }
-            }
-        });
-    }
-
     function bistaratuDonuta(hautatzailea, emaitzak, zer, title) {
         var pareak_zero = [];
         var pareak = [];
@@ -244,7 +170,7 @@
             pareak.push([element, emaitzak[zer].hautagaiak[element].hautetsiak]);
 
         });
-        
+
         var eae = c3.generate({
             bindto: hautatzailea,
             data: {

@@ -10,13 +10,6 @@
     font-size: 24px;
     font-weight: bold;
 }
-.c3-axis-x .tick line {
-    display: none;
-}
-.c3-bar {
-    stroke: #fff !important;
-    stroke-width: 1;
-}
 .unitatea {
     width: 24%;
     display: inline-block;

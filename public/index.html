@@ -11,22 +11,25 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Eusko Legebiltzarrerako hauteskundeak 2016</title>
+		<link href="css/c3/c3.min.css" rel="stylesheet">
 		<link href="css/estiloa.css" rel="stylesheet">
 	</head>
 
 	<body>
 		<div id="kontainerra">
-			<div id="mapa"></div>
-			<div id="kredituak">
-				<a target="_blank" href="http://www.argia.eus"><img id="mapa-argia-logoa" src="img/argia-gardena.png"></a>
-				<a target="_blank" href="http://www.iametza.eus"><img id="mapa-iametza-logoa" src="img/iametza.png"></a>
-				<div>
-				  <strong>Asier Iturralde Sarasola</strong>&nbsp;<a target="_blank" href="http://www.twitter.com/aldatsa">@aldatsa</a>
+			<div id="barrak"></div>
+			<div id="mapa">
+				<div id="kredituak">
+					<a target="_blank" href="http://www.argia.eus"><img id="mapa-argia-logoa" src="img/argia-gardena.png"></a>
+					<a target="_blank" href="http://www.iametza.eus"><img id="mapa-iametza-logoa" src="img/iametza.png"></a>
+					<div>
+					  <strong>Asier Iturralde Sarasola</strong>&nbsp;<a target="_blank" href="http://www.twitter.com/aldatsa">@aldatsa</a>
+					</div>
+					<div>
+						Datu geografikoak: <a target="_blank" href="http://www.euskalgeo.net/">Euskalgeo</a>n oinarrituta
+					</div>
+					<div><a target="_blank" href="">Iturburu kodea eta datuak (GPLv3/CC-BY-SA)</a></div>
 				</div>
-				<div>
-					Datu geografikoak: <a target="_blank" href="http://www.euskalgeo.net/">Euskalgeo</a>n oinarrituta
-				</div>
-				<div><a target="_blank" href="">Iturburu kodea eta datuak (GPLv3/CC-BY-SA)</a></div>
 			</div>
 			<div class="hasierako-mezua">Pasa sagua herrien gainetik xehetasunak bistaratzeko.</div>
 			<div id="unitatea-izena"></div>
@@ -93,6 +96,7 @@
 		</div>
 
 		<script type="text/javascript" src="js/d3/d3.min.js"></script>
+		<script type="text/javascript" src="js/c3/c3.min.js"></script>
 		<script type="text/javascript" src="js/topojson/topojson.min.js"></script>
 		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 

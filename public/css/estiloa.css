@@ -41,6 +41,7 @@ a {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
 }
 
 #kredituak {
@@ -167,4 +168,11 @@ a {
 .datuen-taula td, .datuen-taula th {
     padding-top: 5px;
     padding-bottom: 5px;
+}
+.c3-axis-x .tick line {
+    display: none;
+}
+.c3-bar {
+    stroke: #fff !important;
+    stroke-width: 1;
 }

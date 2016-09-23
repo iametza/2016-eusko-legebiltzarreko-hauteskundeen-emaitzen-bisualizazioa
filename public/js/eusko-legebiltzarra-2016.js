@@ -15,16 +15,16 @@
     // 		"bizkaia"
     //		"gipuzkoa"
     //		"nafarroa"
-    var hautatutako_herrialdea = "araba";
+    var hautatutako_herrialdea = "bizkaia";
 
     var hautagaiak = {
         "EH BILDU": {
             kolorea: "#b3c801",
-            irudia: "img/ehbildu.jpg"
+            irudia: "img/eh-bildu.gif"
         },
         "EAJ-PNV": {
             kolorea: "#008336",
-            irudia: "img/eaj-pnv.png"
+            irudia: "img/eaj-pnv.gif"
         },
         "PSE-EE": {
             kolorea: "#ed1b24",
@@ -32,11 +32,11 @@
         },
         "PP": {
             kolorea: "#0BB2FF",
-            irudia: "img/pp.png"
+            irudia: "img/pp.gif"
         },
-        "UPYD": {
+        "UPyD": {
             kolorea: "#E4007D",
-            irudia: "img/upyd.png"
+            irudia: "img/upyd.gif"
         },
         "CIUDADANOS": {
             kolorea: "#F78934",
@@ -46,46 +46,49 @@
             kolorea: "#6B1F5F",
             irudia: "img/podemos.png"
         },
-        "IRABAZI": {
+        "IU-LV": {
             kolorea: "#4B4B49",
-            irudia: "img/irabazi.png"
+            irudia: "img/iu.gif"
         },
-        "GEROA BAI": {
-            kolorea: "#D42E12",
-            irudia: "img/geroabai.jpg"
-        },
-        "UPN": {
-            kolorea: "#0C4DA2",
-            irudia: "img/upn.png"
-        },
-        "PSN": {
-            kolorea: "#ed1b24",
-            irudia: "img/psn.png"
-        },
-        "RCN-NOK": {
-            irudia: "img/rcn-nok.png"
-        },
-        "I-E(n)": {
-            kolorea: "#C60E4A",
-            irudia: "img/ezkerra.jpg"
-        },
-        "SAIn": {
-            irudia: "img/sain.png"
-        },
-        "PACMA": {
-            irudia: "img/pacma.jpeg"
-        },
-        "LN": {
-            irudia: "img/ln.png"
+        "EB-B": {
+            kolorea: "#4B4B49",
+            irudia: "img/eb.gif"
         },
         "EQUO": {
-            irudia: "img/equo.jpeg"
+            irudia: "img/equo.gif"
         },
-        "IKUNE": {
-            irudia: "img/ikune.png"
+        "Eb-Az": {
+            irudia: "img/eb-az.gif"
         },
-        "VOX": {
-            irudia: "img/vox.jpg"
+        "PACMA/ATTKA": {
+            irudia: "img/pacma.gif"
+        },
+        "HARTOS.org": {
+            irudia: "img/hartos.gif"
+        },
+        "PUM+J": {
+            irudia: "img/mj.gif"
+        },
+        "PH": {
+            irudia: "img/ph.gif"
+        },
+        "PFyV": {
+            irudia: "img/pfyv.gif"
+        },
+        "POSI": {
+            irudia: "img/posi.gif"
+        },
+        "UCE": {
+            irudia: "img/uce.gif"
+        },
+        "EK-PCPE": {
+            irudia: "img/pcpe.gif"
+        },
+        "ONGI ETORRI": {
+            irudia: "img/ongi-etorri.gif"
+        },
+        "PYC": {
+            irudia: "img/pyc.gif"
         }
     }
 
@@ -219,6 +222,8 @@
                         if (error) {
                             return console.error(error);
                         }
+
+                        bistaratuBarrak("#barrak", emaitzak_herrialdeak1, emaitzak_herrialdeak2, hautatutako_herrialdea, 5);
 
                         aldatuKredituenKokapena(hautatutako_herrialdea);
 
@@ -550,7 +555,7 @@
                     "<td>" + element.partehartzea + "</td>";
 
             herriz_herriko_taulako_alderdien_ordena.forEach(function(element2, index2, array2) {
-                
+
                 katea =  katea + "<td>" + element.hautagaiak[element2].botoak + "</td>";
             });
 
@@ -564,5 +569,77 @@
 
     function aldatuKredituenKokapena(herrialdea) {
         $("#kredituak").addClass(herrialdea);
+    }
+
+    function bistaratuBarrak(hautatzailea, emaitzak1, emaitzak2, zer, zenbat_barra_bistaratu) {
+
+        var array2012 = ["2012"];
+        var array2016 = ["2016"];
+
+        // Tooltip-ean ze alderdiren datuak diren bistaratzeko.
+        var indizea = 0;
+
+        for (var i = 0; i < zenbat_barra_bistaratu; i++) {
+
+            array2012.push(emaitzak1[zer].hautagaiak[emaitzak2[zer].ordena[i]].botoak);
+            array2016.push(emaitzak2[zer].hautagaiak[emaitzak2[zer].ordena[i]].botoak);
+
+        }
+
+        var chart = c3.generate({
+            bindto: hautatzailea,
+            data: {
+                columns: [
+                    array2012,
+                    array2016
+                ],
+                color: function (color, d) {
+
+                    // d will be 'id' when called for legends
+                    if (d.index >= 0) {
+                        return hautagaiak[emaitzak2[zer].ordena[d.index]].kolorea;
+                    }
+                    return color;
+                },
+                type: 'bar',
+                onmouseover: function (d, i) {
+                    // Tooltip-ean ze alderdiren datuak diren bistaratzeko.
+                    indizea = d.index;
+                },
+                labels: true
+            },
+            bar: {
+                width: {
+                    ratio: 0.85 // this makes bar width 50% of length between ticks
+                }
+                // or
+                //width: 100 // this makes bar width 100px
+            },
+            legend: {
+                show: false
+            },
+            tooltip: {
+                format: {
+                    title: function(value, ratio, id) {
+
+                        // onmouseover gertaeran gordetako indizeari dagokion alderdiaren izena bistaratu.
+                        return emaitzak2[zer].ordena[indizea];
+                    }
+                }
+            },
+            axis: {
+                x: {
+                    tick: {
+                        format: function(d) {
+                            return emaitzak2[zer].ordena[d];
+                        },
+                        outer: false
+                    }
+                },
+                y: {
+                    show: false
+                }
+            }
+        });
     }
 }());
