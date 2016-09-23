@@ -30,21 +30,30 @@
 
     function bistaratuBarrak(hautatzailea, emaitzak1, emaitzak2, zer) {
 
+        var array2012 = ["2012"];
+        var array2016 = ["2016"];
+
+        // Tooltip-ean ze alderdiren datuak diren bistaratzeko.
+        var indizea = 0;
+
+        emaitzak2[zer].ordena.forEach(function(element, index, array) {
+
+            array2012.push(emaitzak1[zer].hautagaiak[element].botoak);
+            array2016.push(emaitzak2[zer].hautagaiak[element].botoak);
+
+        });
+
         var chart = c3.generate({
             bindto: hautatzailea,
             data: {
                 columns: [
-                    ['2012', 30, 200, 100, 400, 150, 250],
-                    ['2016', 130, 100, 140, 200, 150, 50]
+                    array2012,
+                    array2016
                 ],
                 type: 'bar',
-                labels: {
-                    format: function (v, id, i, j) {
-                        console.log(v);
-                        console.log(id);
-                        console.log(i);
-                        console.log(j);
-                    }
+                onmouseover: function (d, i) {
+                    // Tooltip-ean ze alderdiren datuak diren bistaratzeko.
+                    indizea = d.index;
                 }
             },
             bar: {
@@ -53,6 +62,13 @@
                 }
                 // or
                 //width: 100 // this makes bar width 100px
+            },
+            tooltip: {
+                format: {
+                    title: function(value, ratio, id) {
+                        return emaitzak2[zer].ordena[indizea];
+                    }
+                }
             }
         });
     }
