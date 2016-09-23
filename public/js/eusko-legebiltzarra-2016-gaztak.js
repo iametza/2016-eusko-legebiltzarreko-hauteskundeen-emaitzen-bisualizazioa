@@ -77,7 +77,8 @@
                     tick: {
                         format: function(d) {
                             return emaitzak2[zer].ordena[d];
-                        }
+                        },
+                        outer: false
                     }
                 },
                 y: {

@@ -10,6 +10,9 @@
     font-size: 24px;
     font-weight: bold;
 }
+.c3-axis-x .tick line {
+    display: none;
+}
 .unitatea {
     width: 24%;
     display: inline-block;
