@@ -50,6 +50,14 @@
                     array2012,
                     array2016
                 ],
+                color: function (color, d) {
+
+                    // d will be 'id' when called for legends
+                    if (d.index >= 0) {
+                        return koloreak[emaitzak2[zer].ordena[d.index]];
+                    }
+                    return color;
+                },
                 type: 'bar',
                 onmouseover: function (d, i) {
                     // Tooltip-ean ze alderdiren datuak diren bistaratzeko.
@@ -62,6 +70,9 @@
                 }
                 // or
                 //width: 100 // this makes bar width 100px
+            },
+            legend: {
+                show: false
             },
             tooltip: {
                 format: {
