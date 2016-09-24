@@ -173,7 +173,7 @@
 
 			}
 
-			katea = katea + "<tr><td class='irudia'><img src='" +  hautagaiak[datuak2[zer].ordena[i]].irudia + "' /></td><td class='botoak'>" + datuak2[zer].hautagaiak[datuak2[zer].ordena[i]].botoak + "</td><td class='ahulkiak'>" + datuak2[zer].hautagaiak[datuak2[zer].ordena[i]].hautetsiak + "</td><td class='aldea'>" + aldea + "</td></tr>";
+			katea = katea + "<tr><td class='irudia'><img src='" +  hautagaiak[datuak2[zer].ordena[i]].irudia + "' /></td><td class='botoak'>" + gehituPuntuakZenbakiei(datuak2[zer].hautagaiak[datuak2[zer].ordena[i]].botoak) + "</td><td class='ahulkiak'>" + datuak2[zer].hautagaiak[datuak2[zer].ordena[i]].hautetsiak + "</td><td class='aldea'>" + aldea + "</td></tr>";
 
         }
 
@@ -240,5 +240,8 @@
                 columns: pareak
             });
         }, 500);
+    }
+    function gehituPuntuakZenbakiei(zenbakia) {
+        return zenbakia.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 }());
