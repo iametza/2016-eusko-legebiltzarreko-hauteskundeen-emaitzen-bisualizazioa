@@ -538,7 +538,7 @@
                 }
 
                 // Taulako errenkada prestatu.
-                katea = katea + "<tr><td class='kolorea' style='background-color:" + kolorea + "'>&nbsp;</td><td class='izena' title='" + datuak2.ordena[i] + "'>" + izena + "</td><td class='botoak'>" + datuak2.hautagaiak[datuak2.ordena[i]].botoak + "</td><td class='ahulkiak'>" + datuak2.hautagaiak[datuak2.ordena[i]].ehunekoa + "</td><td class='aldea'>" + aldea + "</td></tr>";
+                katea = katea + "<tr><td class='kolorea' style='background-color:" + kolorea + "'>&nbsp;</td><td class='izena' title='" + datuak2.ordena[i] + "'>" + izena + "</td><td class='botoak'>" + gehituPuntuakZenbakiei(datuak2.hautagaiak[datuak2.ordena[i]].botoak) + "</td><td class='ahulkiak'>%" + ordezkatuPuntuaKomarekin(datuak2.hautagaiak[datuak2.ordena[i]].ehunekoa) + "</td><td class='aldea'>" + aldea + "</td></tr>";
 
             }
 
@@ -559,15 +559,15 @@
 
         $(".eguneraketa-ordua").text(datuak.ordua);
 
-        $(".zenbatua").text(datuak.zenbatua);
+        $(".zenbatua").text("%" + ordezkatuPuntuaKomarekin(datuak.zenbatua));
 
-        $(".errolda").text(datuak.zentsua);
+        $(".errolda").text(gehituPuntuakZenbakiei(datuak.zentsua));
 
-        $(".ehuneko-abstentzioa").text(borobildu2dezimaletara(100 * datuak.abstentzioa / datuak.zentsua, 10));
+        $(".ehuneko-abstentzioa").text("%" + ordezkatuPuntuaKomarekin(borobildu2dezimaletara(100 * datuak.abstentzioa / datuak.zentsua, 10)));
 
-        $(".ehuneko-baliogabeak").text(borobildu2dezimaletara(100 * datuak.baliogabeak / datuak.hautesleak));
+        $(".ehuneko-baliogabeak").text("%" + ordezkatuPuntuaKomarekin(borobildu2dezimaletara(100 * datuak.baliogabeak / datuak.hautesleak)));
 
-        $(".ehuneko-zuriak").text(borobildu2dezimaletara(100 * datuak.zuriak / datuak.hautesleak));
+        $(".ehuneko-zuriak").text("%" + ordezkatuPuntuaKomarekin(borobildu2dezimaletara(100 * datuak.zuriak / datuak.hautesleak)));
 
     }
 
@@ -580,8 +580,8 @@
             katea = katea +
                 "<tr>" +
                     "<td>" + datuak2[hautatutako_herrialdea].hautagaiak[element].izena + "</td>" +
-                    "<td>" + datuak2[hautatutako_herrialdea].hautagaiak[element].botoak + "</td>" +
-                    "<td>%" + datuak2[hautatutako_herrialdea].hautagaiak[element].ehunekoa + "</td>" +
+                    "<td>" + gehituPuntuakZenbakiei(datuak2[hautatutako_herrialdea].hautagaiak[element].botoak) + "</td>" +
+                    "<td>%" + ordezkatuPuntuaKomarekin(datuak2[hautatutako_herrialdea].hautagaiak[element].ehunekoa) + "</td>" +
                 "</tr>";
         });
 
@@ -600,11 +600,11 @@
             katea = katea +
                 "<tr>" +
                     "<td>" + element.izena + "</td>" +
-                    "<td>" + element.partehartzea + "</td>";
+                    "<td>%" + ordezkatuPuntuaKomarekin(element.partehartzea) + "</td>";
 
             herriz_herriko_taulako_alderdien_ordena.forEach(function(element2, index2, array2) {
 
-                katea =  katea + "<td>" + element.hautagaiak[element2].botoak + "</td>";
+                katea =  katea + "<td>" + gehituPuntuakZenbakiei(element.hautagaiak[element2].botoak) + "</td>";
             });
 
             katea = katea + "</tr>";
@@ -654,7 +654,11 @@
                     // Tooltip-ean ze alderdiren datuak diren bistaratzeko.
                     indizea = d.index;
                 },
-                labels: true
+                labels: {
+                    format: function(v, id, i, j) {
+                        return gehituPuntuakZenbakiei(v);
+                    }
+                }
             },
             bar: {
                 width: {
@@ -672,7 +676,8 @@
 
                         // onmouseover gertaeran gordetako indizeari dagokion alderdiaren izena bistaratu.
                         return emaitzak2[zer].ordena[indizea];
-                    }
+                    },
+
                 }
             },
             axis: {
@@ -689,5 +694,11 @@
                 }
             }
         });
+    }
+    function gehituPuntuakZenbakiei(zenbakia) {
+        return zenbakia.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    function ordezkatuPuntuaKomarekin(zenbakia) {
+        return zenbakia.toString().replace(".", ',');
     }
 }());
