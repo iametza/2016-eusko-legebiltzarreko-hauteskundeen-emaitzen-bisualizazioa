@@ -38,7 +38,7 @@ a {
 }
 
 #mapa {
-    display: block;
+    display: none;
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -77,6 +77,7 @@ a {
 .hasierako-mezua {
     text-align: center;
     margin-top: 10px;
+    display: none;
 }
 
 .daturik-ez {
@@ -86,6 +87,7 @@ a {
 }
 
 .datuak {
+    display: none;
     visibility: hidden; /* Hasieran ezkutuan */
     width: 580px;
     height: 360px;
@@ -175,4 +177,7 @@ a {
 .c3-bar {
     stroke: #fff !important;
     stroke-width: 1;
+}
+#herrialdeko-datuak-etiketa, #herrialdeko-datuak, #emaitzak-herriz-herri-etiketa, #emaitzak-herriz-herri {
+    display: none;
 }

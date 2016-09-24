@@ -39,6 +39,12 @@
     //		"nafarroa"
     var hautatutako_herrialdea = url_parametroak.herrialdea ? url_parametroak.herrialdea : "araba";
 
+    var zer_bistaratu = {
+        barrak: url_parametroak.barrak  === "false" ? false : true,
+        mapa: url_parametroak.mapa  === "false" ? false : true,
+        xehetasunak: url_parametroak.xehetasunak  === "false" ? false : true
+    };
+
     var hautagaiak = {
         "EH BILDU": {
             kolorea: "#b3c801",
@@ -112,7 +118,7 @@
         "PYC": {
             irudia: "img/pyc.gif"
         }
-    }
+    };
 
     var herriz_herriko_taulako_alderdien_ordena = [
         "EH BILDU",
@@ -191,7 +197,7 @@
             altuera: 650,
             zabalera: 680
         }
-    }
+    };
 
     // Maparen svg elementuaren neurriak.
     var width = herrialdeak[hautatutako_herrialdea].zabalera,
@@ -245,11 +251,13 @@
                             return console.error(error);
                         }
 
-                        bistaratuBarrak("#barrak", emaitzak_herrialdeak1, emaitzak_herrialdeak2, hautatutako_herrialdea, 5);
+                        if (zer_bistaratu.barrak) {
+
+                            bistaratuBarrak("#barrak", emaitzak_herrialdeak1, emaitzak_herrialdeak2, hautatutako_herrialdea, 5);
+
+                        }
 
                         aldatuKredituenKokapena(hautatutako_herrialdea);
-
-                        bistaratuHerrialdekoDatuak(emaitzak_herrialdeak1, emaitzak_herrialdeak2);
 
                         // Emaitzak eta topoJSON-a bateratzeko ideia hemendik hartu dut, behar bada badago modu hobe bat.
                         // http://stackoverflow.com/questions/22994316/how-to-reference-csv-alongside-geojson-for-d3-rollover
@@ -330,96 +338,113 @@
 
                         });
 
-                        // Udalerri guztiak.
-                        svg.selectAll(".unitateak")
-                            .data(topojson.feature(eh, eh.objects[herrialdeak[hautatutako_herrialdea].json_izena]).features)
-                            .enter().append("path")
-                            .attr("fill", function(d) {
+                        if (zer_bistaratu.mapa) {
 
-                                // Herriko hautagai bozkatuenaren kolorea.
-                                if (d.properties.emaitzak2) {
+                            // Udalerri guztiak.
+                            svg.selectAll(".unitateak")
+                                .data(topojson.feature(eh, eh.objects[herrialdeak[hautatutako_herrialdea].json_izena]).features)
+                                .enter().append("path")
+                                .attr("fill", function(d) {
 
-                                    // Hautagaiarentzat kolore bat definitu badugu...
-                                    if (hautagaiak[d.properties.emaitzak2.ordena[0]]) {
+                                    // Herriko hautagai bozkatuenaren kolorea.
+                                    if (d.properties.emaitzak2) {
 
-                                        return hautagaiak[d.properties.emaitzak2.ordena[0]].kolorea;
+                                        // Hautagaiarentzat kolore bat definitu badugu...
+                                        if (hautagaiak[d.properties.emaitzak2.ordena[0]]) {
 
-                                    } else {
+                                            return hautagaiak[d.properties.emaitzak2.ordena[0]].kolorea;
 
-                                        return "#cccccc";
+                                        } else {
+
+                                            return "#cccccc";
+
+                                        }
 
                                     }
 
-                                }
+                                    // Emaitzarik ez badago...
+                                    return "#ffffff";
 
-                                // Emaitzarik ez badago...
-                                return "#ffffff";
+                                })
+                                .attr("class", "unitateak")
+                                .attr("id", function(d) { return "unitatea_" + d.properties.ad_kod; })
+                                .attr("d", path)
+                                .on("mouseover", function(d) {
 
-                            })
-                            .attr("class", "unitateak")
-                            .attr("id", function(d) { return "unitatea_" + d.properties.ad_kod; })
-                            .attr("d", path)
-                            .on("mouseover", function(d) {
+                                    // Elementu geografiko guztiek ez daukate iz_euskal propietatea,
+                                    // ez badauka ud_iz_e erabili.
+                                    if (d.properties.iz_euskal) {
 
-                                // Elementu geografiko guztiek ez daukate iz_euskal propietatea,
-                                // ez badauka ud_iz_e erabili.
-                                if (d.properties.iz_euskal) {
+                                        $("#unitatea-izena").text(d.properties.iz_euskal);
 
-                                    $("#unitatea-izena").text(d.properties.iz_euskal);
+                                    } else {
 
-                                } else {
+                                        $("#unitatea-izena").text(d.properties.ud_iz_e);
 
-                                    $("#unitatea-izena").text(d.properties.ud_iz_e);
+                                    }
 
-                                }
+                                    if (d.properties.emaitzak2) {
 
-                                if (d.properties.emaitzak2) {
+                                        beteTaula(d.properties.emaitzak1, d.properties.emaitzak2);
 
-                                    beteTaula(d.properties.emaitzak1, d.properties.emaitzak2);
+                                        beteDatuak(d.properties.emaitzak2);
 
-                                    beteDatuak(d.properties.emaitzak2);
+                                        $(".hasierako-mezua").hide();
 
-                                    $(".hasierako-mezua").hide();
+                                        $(".daturik-ez").hide();
 
-                                    $(".daturik-ez").hide();
+                                        $(".datuak").css("visibility", "visible");
 
-                                    $(".datuak").css("visibility", "visible");
+                                    } else {
 
-                                } else {
+                                        $(".datuak").css("visibility", "hidden");
 
-                                    $(".datuak").css("visibility", "hidden");
+                                        $(".daturik-ez").show();
 
-                                    $(".daturik-ez").show();
+                                    }
 
-                                }
+                                });
 
+                            // Eskualdeen arteko mugak (a !== b)
+                            svg.append("path")
+                                .datum(topojson.mesh(eh, eh.objects[herrialdeak[hautatutako_herrialdea].json_izena], function(a, b) { return a !== b; }))
+                                .attr("d", path)
+                                .attr("class", "eskualde-mugak");
+
+                            // Unitateak aurreko planora ekarri.
+                            svg.selectAll(".unitateak").each(function() {
+                                var sel = d3.select(this);
+                                sel.moveToFront();
                             });
 
-                        // Eskualdeen arteko mugak (a !== b)
-                        svg.append("path")
-                            .datum(topojson.mesh(eh, eh.objects[herrialdeak[hautatutako_herrialdea].json_izena], function(a, b) { return a !== b; }))
-                            .attr("d", path)
-                            .attr("class", "eskualde-mugak");
+                            // Kanpo-mugak (a === b)
+                            svg.append("path")
+                                .datum(topojson.mesh(eh, eh.objects[herrialdeak[hautatutako_herrialdea].json_izena], function(a, b) { return a === b; }))
+                                .attr("d", path)
+                                .attr("class", "kanpo-mugak");
 
-                        // Unitateak aurreko planora ekarri.
-                        svg.selectAll(".unitateak").each(function() {
-                            var sel = d3.select(this);
-                            sel.moveToFront();
-                        });
+                            // Unitateak aurreko planora ekarri.
+                            svg.selectAll(".unitateak").each(function() {
+                                var sel = d3.select(this);
+                                sel.moveToFront();
+                            });
 
-                        // Kanpo-mugak (a === b)
-                        svg.append("path")
-                            .datum(topojson.mesh(eh, eh.objects[herrialdeak[hautatutako_herrialdea].json_izena], function(a, b) { return a === b; }))
-                            .attr("d", path)
-                            .attr("class", "kanpo-mugak");
+                            $("#mapa").show();
+                            $(".hasierako-mezua").show();
+                            $(".datuak").show();
+                        }
 
-                        // Unitateak aurreko planora ekarri.
-                        svg.selectAll(".unitateak").each(function() {
-                            var sel = d3.select(this);
-                            sel.moveToFront();
-                        });
+                        if (zer_bistaratu.xehetasunak) {
 
-                        bistaratuHerrienTaula(emaitzak1, emaitzak2);
+                            bistaratuHerrialdekoDatuak(emaitzak_herrialdeak1, emaitzak_herrialdeak2);
+
+                            bistaratuHerrienTaula(emaitzak1, emaitzak2);
+
+                            $("#herrialdeko-datuak-etiketa").show();
+                            $("#herrialdeko-datuak").show();
+                            $("#emaitzak-herriz-herri-etiketa").show();
+                            $("#emaitzak-herriz-herri").show();
+                        }
                     });
                 });
             });
