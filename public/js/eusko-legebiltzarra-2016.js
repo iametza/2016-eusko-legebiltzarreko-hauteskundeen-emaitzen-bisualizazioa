@@ -255,6 +255,7 @@
 
                             bistaratuBarrak("#barrak", emaitzak_herrialdeak1, emaitzak_herrialdeak2, hautatutako_herrialdea, 5);
 
+                            $("#barrak-kaxa").show();
                         }
 
                         aldatuKredituenKokapena(hautatutako_herrialdea);

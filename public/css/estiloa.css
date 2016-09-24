@@ -36,7 +36,9 @@ a {
     font-family: Arial,Helvetica,sans-serif !important;
     font-size: 16px;
 }
-
+#barrak-kaxa {
+    display: none;
+}
 #mapa {
     display: none;
     margin-left: auto;
