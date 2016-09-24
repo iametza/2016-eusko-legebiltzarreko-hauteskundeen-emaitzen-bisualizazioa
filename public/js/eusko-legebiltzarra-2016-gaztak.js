@@ -29,7 +29,7 @@
     if (hiru_zutabetara) {
         $("#kontainerra").addClass("hiru-zutabetara");
     }
-    
+
     var herrialdeen_json1 = "datuak/2012/herrialdeak2012.json";
     var herrialdeen_json2 = "datuak/2016/herrialdeak2016.json";
 
@@ -106,7 +106,7 @@
         "PYC": {
             irudia: "img/pyc.gif"
         }
-    }
+    };
 
     d3.json(herrialdeen_json1, function(error, emaitzak1) {
 
