@@ -173,7 +173,21 @@
 
 			}
 
-			katea = katea + "<tr><td class='irudia'><img src='" +  hautagaiak[datuak2[zer].ordena[i]].irudia + "' /></td><td class='botoak'>" + gehituPuntuakZenbakiei(datuak2[zer].hautagaiak[datuak2[zer].ordena[i]].botoak) + "</td><td class='ahulkiak'>" + datuak2[zer].hautagaiak[datuak2[zer].ordena[i]].hautetsiak + "</td><td class='aldea'>" + aldea + "</td></tr>";
+            var kolorea = "#cccccc";
+
+            // Hautagaiak kolorea badu...
+            if (hautagaiak[datuak2[zer].ordena[i]] && hautagaiak[datuak2[zer].ordena[i]].kolorea) {
+
+                kolorea = hautagaiak[datuak2[zer].ordena[i]].kolorea;
+
+            // Bestela kolore neutro bat erabili.
+            } else {
+
+                kolorea = "#cccccc";
+
+            }
+
+			katea = katea + "<tr><td class='irudia'><img src='" +  hautagaiak[datuak2[zer].ordena[i]].irudia + "' /></td><td class='kolorea' style='background-color:" + kolorea + "'>&nbsp;</td><td class='botoak'>" + gehituPuntuakZenbakiei(datuak2[zer].hautagaiak[datuak2[zer].ordena[i]].botoak) + "</td><td class='ahulkiak'>" + datuak2[zer].hautagaiak[datuak2[zer].ordena[i]].hautetsiak + "</td><td class='aldea'>" + aldea + "</td></tr>";
 
         }
 
