@@ -623,7 +623,7 @@
                 if (datuak2.hautagaiak[datuak2.ordena[i]].izena === datuak1.hautagaiak[datuak1.ordena[j]].izena) {
 
                     aldea = datuak2.hautagaiak[datuak2.ordena[i]].botoak - datuak1.hautagaiak[datuak1.ordena[j]].botoak;
-                    aldea = datuak2.hautagaiak[datuak2.ordena[i]].hautetsiak - datuak1.hautagaiak[datuak1.ordena[j]].hautetsiak;
+                    hautetsien_aldea = datuak2.hautagaiak[datuak2.ordena[i]].hautetsiak - datuak1.hautagaiak[datuak1.ordena[j]].hautetsiak;
                 }
 
                 // Salbuespena: BILDU -> EH BILDU.
@@ -675,7 +675,7 @@
                     "<td class='botoak-aldea'>" + aldea + "</td>" +
                     "<td class='ehunekoa'>%" + ordezkatuPuntuaKomarekin(datuak2.hautagaiak[datuak2.ordena[i]].ehunekoa) + "</td>" +
                     "<td class='hautetsiak'>" + datuak2.hautagaiak[datuak2.ordena[i]].hautetsiak + "</td>" +
-                    "<td class='hautetsiak-aldea'>" + hautetsien_aldea + "</td>" +
+                    "<td class='hautetsiak-aldea'>" + gehituPuntuakZenbakiei(hautetsien_aldea) + "</td>" +
                 "</tr>";
         }
 
