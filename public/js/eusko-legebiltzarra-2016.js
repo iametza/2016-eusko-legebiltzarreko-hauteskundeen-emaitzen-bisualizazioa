@@ -140,8 +140,9 @@
     };
 
     var herriz_herriko_taulako_alderdien_ordena = [
-        "EH BILDU",
         "EAJ-PNV",
+        "EH BILDU",
+        "ELKARREKIN PODEMOS",
         "PSE-EE",
         "PP"
     ];
