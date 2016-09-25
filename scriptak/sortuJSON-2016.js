@@ -56,6 +56,7 @@ var normalizatuAlderdiarenIzenak = function(izena) {
             izena = "UPyD";
             break;
         case "EB-AZ":
+        case "EB / AZ":
             izena = "Eb-Az";
             break;
         case "HARTOS.ORG":
@@ -63,6 +64,15 @@ var normalizatuAlderdiarenIzenak = function(izena) {
             break;
         case "PFYV":
             izena = "PFyV";
+            break;
+        case "C´S":
+            izena = "CIUDADANOS";
+            break;
+        case "PACMA/ATTKAA":
+            izena = "PACMA/ATTKA";
+            break;
+        case "EH Bildu":
+            izena = "EH BILDU";
             break;
     }
 

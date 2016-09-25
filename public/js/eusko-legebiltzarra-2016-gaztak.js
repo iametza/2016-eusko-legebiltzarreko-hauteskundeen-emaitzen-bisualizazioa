@@ -105,6 +105,25 @@
         },
         "PYC": {
             irudia: "img/pyc.gif"
+        },
+        "ELKARREKIN PODEMOS": {
+            irudia: "img/podemos.jpg",
+            kolorea: "blue"
+        },
+        "GANEMOS:SI SE PUEDE": {
+            kolorea: "#fff"
+        },
+        "RECORTES CERO-GV": {
+            kolorea: "#fff"
+        },
+        "LN": {
+            kolorea: "#fff"
+        },
+        "O.E.": {
+            kolorea: "#fff"
+        },
+        "VOX": {
+            kolorea: "#fff"
         }
     };
 
@@ -195,7 +214,7 @@
                 kolorea = "#cccccc";
 
             }
-
+            console.log(datuak2[zer].ordena[i]);
 			katea = katea + "<tr><td class='irudia'><img src='" +  hautagaiak[datuak2[zer].ordena[i]].irudia + "' /></td><td class='kolorea' style='background-color:" + kolorea + "'>&nbsp;</td><td class='botoak'>" + gehituPuntuakZenbakiei(datuak2[zer].hautagaiak[datuak2[zer].ordena[i]].botoak) + "</td><td class='ahulkiak'>" + datuak2[zer].hautagaiak[datuak2[zer].ordena[i]].hautetsiak + "</td><td class='aldea'>" + aldea + "</td></tr>";
 
         }
