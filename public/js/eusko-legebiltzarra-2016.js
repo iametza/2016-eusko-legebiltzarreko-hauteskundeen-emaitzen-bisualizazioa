@@ -437,7 +437,7 @@
 
                         if (zer_bistaratu.xehetasunak) {
 
-                            bistaratuHerrialdekoDatuak(emaitzak_herrialdeak1, emaitzak_herrialdeak2);
+                            bistaratuHerrialdekoDatuak(emaitzak_herrialdeak1[hautatutako_herrialdea], emaitzak_herrialdeak2[hautatutako_herrialdea]);
 
                             bistaratuHerrienTaula(emaitzak1, emaitzak2);
 
@@ -574,16 +574,74 @@
     function bistaratuHerrialdekoDatuak(datuak1, datuak2) {
 
         var katea = "";
+        var aldea = "";
+        var hautetsien_aldea = "";
 
-        datuak2[hautatutako_herrialdea].ordena.forEach(function(element, index, array) {
+        for (var i = 0; i < datuak2.ordena.length; i++) {
+
+            aldea = "";
+            hautetsien_aldea = "";
+
+            for (var j = 0; j < datuak1.ordena.length; j++) {
+
+                if (datuak2.hautagaiak[datuak2.ordena[i]].izena === datuak1.hautagaiak[datuak1.ordena[j]].izena) {
+
+                    aldea = datuak2.hautagaiak[datuak2.ordena[i]].botoak - datuak1.hautagaiak[datuak1.ordena[j]].botoak;
+                    aldea = datuak2.hautagaiak[datuak2.ordena[i]].hautetsiak - datuak1.hautagaiak[datuak1.ordena[j]].hautetsiak;
+                }
+
+                // Salbuespena: BILDU -> EH BILDU.
+                if (datuak2.hautagaiak[datuak2.ordena[i]].izena === "EH BILDU" && datuak1.hautagaiak[datuak1.ordena[j]].izena === "BILDU") {
+
+                    aldea = datuak2.hautagaiak[datuak2.ordena[i]].botoak - datuak1.hautagaiak[datuak1.ordena[j]].botoak;
+
+                // Salbuespena: GEROA BAI -> NA-BAI.
+                } else if (datuak2.hautagaiak[datuak2.ordena[i]].izena === "GEROA BAI" && datuak1.hautagaiak[datuak1.ordena[j]].izena === "NA-BAI") {
+
+                    aldea = datuak2.hautagaiak[datuak2.ordena[i]].botoak - datuak1.hautagaiak[datuak1.ordena[j]].botoak;
+
+                }
+
+            }
+
+            // Bi hauteskundeen artean hautagaien hautetsi kopuruan egondako aldaketaren zeinua (igo, jaitsi...) bistaratzeko prestatu.
+            if (aldea === "") {
+
+                // Hautagaia ez zen aurkeztu aurreko hauteskundeetan
+                // edo izena ez dator bat (izenen normalizazioarekin arazoak izan ditugu).
+                aldea = "-";
+                hautetsien_aldea = "-";
+
+            } else if (aldea > 0) {
+
+                // Hautagaiaren hautetsi kopurua igo da.
+                aldea = "&#9650;" + aldea;
+                hautetsien_aldea = "&#9650;" + hautetsien_aldea;
+
+            } else if (aldea < 0) {
+
+                // Hautagaiaren hautetsi kopurua jaitsi da.
+                aldea = "&#9660;" + Math.abs(aldea);
+                hautetsien_aldea = "&#9660;" + Math.abs(hautetsien_aldea);
+
+            } else {
+
+                // Hautagaiak hautetsi kopuru berdina atera du.
+                aldea = "=";
+                hautetsien_aldea = "=";
+
+            }
 
             katea = katea +
                 "<tr>" +
-                    "<td>" + datuak2[hautatutako_herrialdea].hautagaiak[element].izena + "</td>" +
-                    "<td>" + gehituPuntuakZenbakiei(datuak2[hautatutako_herrialdea].hautagaiak[element].botoak) + "</td>" +
-                    "<td>%" + ordezkatuPuntuaKomarekin(datuak2[hautatutako_herrialdea].hautagaiak[element].ehunekoa) + "</td>" +
+                    "<td>" + datuak2.hautagaiak[datuak2.ordena[i]].izena + "</td>" +
+                    "<td>" + gehituPuntuakZenbakiei(datuak2.hautagaiak[datuak2.ordena[i]].botoak) + "</td>" +
+                    "<td>" + aldea + "</td>" +
+                    "<td>%" + ordezkatuPuntuaKomarekin(datuak2.hautagaiak[datuak2.ordena[i]].ehunekoa) + "</td>" +
+                    "<td>" + datuak2.hautagaiak[datuak2.ordena[i]].hautetsiak + "</td>" +
+                    "<td>" + hautetsien_aldea + "</td>" +
                 "</tr>";
-        });
+        }
 
         $("#herrialdeko-datuak table tbody").html(katea);
 
