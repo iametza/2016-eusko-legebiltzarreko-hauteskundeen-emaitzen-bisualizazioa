@@ -123,6 +123,14 @@ fs.readFile(inputFile, function(err, data) {
                 element2["SIGLAS"][0] = normalizatuAlderdiarenIzenak(element2["SIGLAS"][0]);
 
                 emaitzak.push([element2["SIGLAS"][0], botoak]);
+                
+                if (element2["PORCENTAJE"][0] === "-") {
+                    element2["PORCENTAJE"][0] = "0.00";
+                }
+
+                if (element2["ESCAÑOS"][0] === "-") {
+                    element2["ESCAÑOS"][0] = "0";
+                }
 
                 hautagaiak[element2["SIGLAS"][0]] = {
                     "izena": element2["SIGLAS"][0],
