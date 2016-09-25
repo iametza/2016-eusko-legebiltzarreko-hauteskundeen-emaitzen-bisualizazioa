@@ -8,7 +8,7 @@
 }
 #kontainerra.hiru-zutabetara {
     width: 950px;
-    height: 500px;
+    height: 510px;
 }
 .c3-chart-arcs-title {
     font-size: 24px;
@@ -22,10 +22,11 @@
     height: 500px;
 }
 .hiru-zutabetara .unitatea {
-    margin-top: -30px;
+    margin-top: 0px;
+    height: 510px;
 }
 .hiru-zutabetara .etiketa {
-    margin-top: -40px;
+    margin-top: 10px;
 }
 .etiketa {
     border-bottom: 1px dotted #ccc;
@@ -49,6 +50,9 @@
     margin-top: -65px;
     margin-bottom: 10px;
     text-align: center;
+}
+.hiru-zutabetara .zenbatua {
+    margin-top: -50px;
 }
 .datuak-taula {
     margin: 0px auto;
