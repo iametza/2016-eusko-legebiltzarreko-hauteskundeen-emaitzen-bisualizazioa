@@ -672,10 +672,10 @@
                 "<tr>" +
                     "<td class='alderdia'>" + datuak2.hautagaiak[datuak2.ordena[i]].izena + "</td>" +
                     "<td class='botoak'>" + gehituPuntuakZenbakiei(datuak2.hautagaiak[datuak2.ordena[i]].botoak) + "</td>" +
-                    "<td class='botoak-aldea'>" + aldea + "</td>" +
+                    "<td class='botoak-aldea'>" + gehituPuntuakZenbakiei(aldea) + "</td>" +
                     "<td class='ehunekoa'>%" + ordezkatuPuntuaKomarekin(datuak2.hautagaiak[datuak2.ordena[i]].ehunekoa) + "</td>" +
                     "<td class='hautetsiak'>" + datuak2.hautagaiak[datuak2.ordena[i]].hautetsiak + "</td>" +
-                    "<td class='hautetsiak-aldea'>" + gehituPuntuakZenbakiei(hautetsien_aldea) + "</td>" +
+                    "<td class='hautetsiak-aldea'>" + hautetsien_aldea + "</td>" +
                 "</tr>";
         }
 
