@@ -117,6 +117,25 @@
         },
         "PYC": {
             irudia: "img/pyc.gif"
+        },
+        "ELKARREKIN PODEMOS": {
+            irudia: "img/podemos.jpg",
+            kolorea: "blue"
+        },
+        "GANEMOS:SI SE PUEDE": {
+            kolorea: "#fff"
+        },
+        "RECORTES CERO-GV": {
+            kolorea: "#fff"
+        },
+        "LN": {
+            kolorea: "#fff"
+        },
+        "O.E.": {
+            kolorea: "#fff"
+        },
+        "VOX": {
+            kolorea: "#fff"
         }
     };
 
@@ -277,7 +296,7 @@
                         aldatuKredituenKokapena(hautatutako_herrialdea);
 
                         if (zer_bistaratu.mapa) {
-                            
+
                             // Emaitzak eta topoJSON-a bateratzeko ideia hemendik hartu dut, behar bada badago modu hobe bat.
                             // http://stackoverflow.com/questions/22994316/how-to-reference-csv-alongside-geojson-for-d3-rollover
 
@@ -702,8 +721,11 @@
         var indizea = 0;
 
         for (var i = 0; i < zenbat_barra_bistaratu; i++) {
-
-            array2012.push(emaitzak1[zer].hautagaiak[emaitzak2[zer].ordena[i]].botoak);
+            if (emaitzak1[zer].hautagaiak[emaitzak2[zer].ordena[i]]) {
+                array2012.push(emaitzak1[zer].hautagaiak[emaitzak2[zer].ordena[i]].botoak);
+            } else {
+                array2012.push(0);
+            }
             array2016.push(emaitzak2[zer].hautagaiak[emaitzak2[zer].ordena[i]].botoak);
 
         }
