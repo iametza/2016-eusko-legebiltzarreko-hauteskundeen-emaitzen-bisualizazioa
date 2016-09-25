@@ -125,12 +125,21 @@
             bistaratuDonuta("#bizkaia-donuta", emaitzak2, "bizkaia", 25);
             bistaratuDonuta("#gipuzkoa-donuta", emaitzak2, "gipuzkoa", 25);
 
+            bistaratuZenbatua("eae", emaitzak2);
+            bistaratuZenbatua("araba", emaitzak2);
+            bistaratuZenbatua("bizkaia", emaitzak2);
+            bistaratuZenbatua("gipuzkoa", emaitzak2);
+
             beteTaula("eae", emaitzak1, emaitzak2, 5);
             beteTaula("araba", emaitzak1, emaitzak2, 5);
             beteTaula("bizkaia", emaitzak1, emaitzak2, 5);
             beteTaula("gipuzkoa", emaitzak1, emaitzak2, 5);
         });
     });
+
+    function bistaratuZenbatua(zer, datuak) {
+        $("#" + zer + " .zenbatua .portzentaia").text(datuak[zer].zenbatua);
+    }
 
     function beteTaula(zer, datuak1, datuak2, zenbat_alderdi_bistaratu) {
 

@@ -19,7 +19,7 @@
     font-size: 16px;
     border: 1px solid #ccc;
     width: 24%;
-    height: 480px;
+    height: 500px;
 }
 .hiru-zutabetara .unitatea {
     margin-top: -30px;
@@ -45,10 +45,14 @@
 .donutak {
     margin-top: -40px;
 }
-.datuak-taula {
-    margin: -60px auto 0px auto;
+.zenbatua {
+    margin-top: -65px;
+    margin-bottom: 10px;
+    text-align: center;
 }
-
+.datuak-taula {
+    margin: 0px auto;
+}
 .datuak-taula .kolorea {
     display: inline-block;
     height: 15px;
