@@ -183,3 +183,25 @@ a {
 #herrialdeko-datuak-etiketa, #herrialdeko-datuak, #emaitzak-herriz-herri-etiketa, #emaitzak-herriz-herri {
     display: none;
 }
+#herrialdeko-datuak table .alderdia {
+    width: 200px;
+}
+#herrialdeko-datuak table .botoak {
+    width: 100px;
+    text-align: right;
+}
+#herrialdeko-datuak table .botoak-aldea {
+    width: 40px;
+}
+#herrialdeko-datuak table .ehunekoa {
+    width: 100px;
+    text-align: right;
+    padding-right: 14px;
+}
+#herrialdeko-datuak table .hautetsiak {
+    width: 140px;
+    text-align: center;
+}
+#herrialdeko-datuak table .hautetsiak-aldea {
+    text-align: center;
+}
