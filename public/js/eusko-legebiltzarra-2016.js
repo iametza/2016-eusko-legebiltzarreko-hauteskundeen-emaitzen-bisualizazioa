@@ -196,6 +196,22 @@
             },
             altuera: 650,
             zabalera: 680
+        },
+        "eae": {
+            kodea: null,
+            datuakJSON_1: "datuak/2012/udalerriak2012.json",
+            datuakJSON_2: "datuak/2016/udalerriak2016.json",
+            json_izena: "udalerriak",
+            topoJSON: "datuak/2016/udalerriak2016.json",
+            proiekzioa: {
+                erdia: {
+                    lat: null,
+                    lng: null
+                },
+                eskala: null
+            },
+            altuera: null,
+            zabalera: null
         }
     };
 
@@ -260,86 +276,86 @@
 
                         aldatuKredituenKokapena(hautatutako_herrialdea);
 
-                        // Emaitzak eta topoJSON-a bateratzeko ideia hemendik hartu dut, behar bada badago modu hobe bat.
-                        // http://stackoverflow.com/questions/22994316/how-to-reference-csv-alongside-geojson-for-d3-rollover
-
-                        // 2011ko hauteskundeetako udalerri bakoitzeko datuak dagokion mapako elementuarekin lotu.
-                        // d: Emaitzen arrayko udalerri bakoitzaren propietateak biltzen dituen objektua.
-                        // i: indizea
-                        emaitzak1.udalerriak.forEach(function(d, i) {
-
-                            // e: Datu geografikoetako udalerriaren propietateak
-                            // j: indizea
-                            topojson.feature(eh, eh.objects[herrialdeak[hautatutako_herrialdea].json_izena]).features.forEach(function(e, j) {
-
-                                // Emaitzetako herriaren kodeari 0ak gehitu beharrezkoa denean,
-                                // gero maparen udalerrien kodearekin konparatu ahal izateko.
-                                if (d.kodea.toString().length === 1) {
-                                    d.kodea = "00" + d.kodea;
-                                } else if (d.kodea.toString().length === 2) {
-                                    d.kodea = "0" + d.kodea;
-                                }
-
-                                // Trebiñuko konderriko 2 herriak kontutan izan. Trebiñu Araba da!!
-                                if ("09" + d.kodea == e.properties.ud_kodea) {
-
-                                    e.properties.emaitzak1 = d;
-
-                                // Villaverde de Turtzioz berriz Bizkaia!
-                                } else if ("39" + d.kodea == e.properties.ud_kodea) {
-
-                                    e.properties.emaitzak1 = d;
-
-                                // Gainerako euskal udalerriak.
-                                } else if (herrialdeak[hautatutako_herrialdea].kodea + d.kodea === e.properties.ud_kodea) {
-
-                                    // Udalerri honetako 2011ko emaitzak mapako bere elementuarekin lotu.
-                                    e.properties.emaitzak1 = d;
-
-                                }
-
-                            });
-
-                        });
-
-                        // 2015ko hauteskundeetako udalerri bakoitzeko datuak dagokion mapako elementuarekin lotu.
-                        // d: Emaitzen arrayko udalerri bakoitzaren propietateak biltzen dituen objektua.
-                        // i: indizea
-                        emaitzak2.udalerriak.forEach(function(d, i) {
-
-                            // e: Datu geografikoetako udalerriaren propietateak
-                            // j: indizea
-                            topojson.feature(eh, eh.objects[herrialdeak[hautatutako_herrialdea].json_izena]).features.forEach(function(e, j) {
-
-                                if (d.kodea.toString().length === 1) {
-                                    d.kodea = "00" + d.kodea;
-                                } else if (d.kodea.toString().length === 2) {
-                                    d.kodea = "0" + d.kodea;
-                                }
-
-                                // Trebiñuko konderriko 2 herriak kontutan izan. Trebiñu Araba da!!
-                                if ("09" + d.kodea == e.properties.ud_kodea) {
-
-                                    e.properties.emaitzak2 = d;
-
-                                // Villaverde de Turtzioz berriz Bizkaia!
-                                } else if ("39" + d.kodea == e.properties.ud_kodea) {
-
-                                    e.properties.emaitzak2 = d;
-
-                                // Gainerako euskal udalerriak
-                                } else if (herrialdeak[hautatutako_herrialdea].kodea + d.kodea === e.properties.ud_kodea) {
-
-                                    // Udalerri honetako 2015eko emaitzak mapako bere elementuarekin lotu.
-                                    e.properties.emaitzak2 = d;
-
-                                }
-
-                            });
-
-                        });
-
                         if (zer_bistaratu.mapa) {
+                            
+                            // Emaitzak eta topoJSON-a bateratzeko ideia hemendik hartu dut, behar bada badago modu hobe bat.
+                            // http://stackoverflow.com/questions/22994316/how-to-reference-csv-alongside-geojson-for-d3-rollover
+
+                            // 2011ko hauteskundeetako udalerri bakoitzeko datuak dagokion mapako elementuarekin lotu.
+                            // d: Emaitzen arrayko udalerri bakoitzaren propietateak biltzen dituen objektua.
+                            // i: indizea
+                            emaitzak1.udalerriak.forEach(function(d, i) {
+
+                                // e: Datu geografikoetako udalerriaren propietateak
+                                // j: indizea
+                                topojson.feature(eh, eh.objects[herrialdeak[hautatutako_herrialdea].json_izena]).features.forEach(function(e, j) {
+
+                                    // Emaitzetako herriaren kodeari 0ak gehitu beharrezkoa denean,
+                                    // gero maparen udalerrien kodearekin konparatu ahal izateko.
+                                    if (d.kodea.toString().length === 1) {
+                                        d.kodea = "00" + d.kodea;
+                                    } else if (d.kodea.toString().length === 2) {
+                                        d.kodea = "0" + d.kodea;
+                                    }
+
+                                    // Trebiñuko konderriko 2 herriak kontutan izan. Trebiñu Araba da!!
+                                    if ("09" + d.kodea == e.properties.ud_kodea) {
+
+                                        e.properties.emaitzak1 = d;
+
+                                    // Villaverde de Turtzioz berriz Bizkaia!
+                                    } else if ("39" + d.kodea == e.properties.ud_kodea) {
+
+                                        e.properties.emaitzak1 = d;
+
+                                    // Gainerako euskal udalerriak.
+                                    } else if (herrialdeak[hautatutako_herrialdea].kodea + d.kodea === e.properties.ud_kodea) {
+
+                                        // Udalerri honetako 2011ko emaitzak mapako bere elementuarekin lotu.
+                                        e.properties.emaitzak1 = d;
+
+                                    }
+
+                                });
+
+                            });
+
+                            // 2015ko hauteskundeetako udalerri bakoitzeko datuak dagokion mapako elementuarekin lotu.
+                            // d: Emaitzen arrayko udalerri bakoitzaren propietateak biltzen dituen objektua.
+                            // i: indizea
+                            emaitzak2.udalerriak.forEach(function(d, i) {
+
+                                // e: Datu geografikoetako udalerriaren propietateak
+                                // j: indizea
+                                topojson.feature(eh, eh.objects[herrialdeak[hautatutako_herrialdea].json_izena]).features.forEach(function(e, j) {
+
+                                    if (d.kodea.toString().length === 1) {
+                                        d.kodea = "00" + d.kodea;
+                                    } else if (d.kodea.toString().length === 2) {
+                                        d.kodea = "0" + d.kodea;
+                                    }
+
+                                    // Trebiñuko konderriko 2 herriak kontutan izan. Trebiñu Araba da!!
+                                    if ("09" + d.kodea == e.properties.ud_kodea) {
+
+                                        e.properties.emaitzak2 = d;
+
+                                    // Villaverde de Turtzioz berriz Bizkaia!
+                                    } else if ("39" + d.kodea == e.properties.ud_kodea) {
+
+                                        e.properties.emaitzak2 = d;
+
+                                    // Gainerako euskal udalerriak
+                                    } else if (herrialdeak[hautatutako_herrialdea].kodea + d.kodea === e.properties.ud_kodea) {
+
+                                        // Udalerri honetako 2015eko emaitzak mapako bere elementuarekin lotu.
+                                        e.properties.emaitzak2 = d;
+
+                                    }
+
+                                });
+
+                            });
 
                             // Udalerri guztiak.
                             svg.selectAll(".unitateak")
