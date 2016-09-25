@@ -59,7 +59,7 @@
             irudia: "img/ciudadanos.jpg"
         },
         "PODEMOS": {
-            kolorea: "#6B1F5F",
+            kolorea: "#5B1256",
             irudia: "img/podemos.png"
         },
         "IU-LV": {
@@ -108,7 +108,7 @@
         },
         "ELKARREKIN PODEMOS": {
             irudia: "img/podemos.jpg",
-            kolorea: "blue"
+            kolorea: "#5B1256"
         },
         "GANEMOS:SI SE PUEDE": {
             kolorea: "#fff"
