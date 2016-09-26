@@ -640,30 +640,50 @@
 
             }
 
-            // Bi hauteskundeen artean hautagaien hautetsi kopuruan egondako aldaketaren zeinua (igo, jaitsi...) bistaratzeko prestatu.
+            // Bi hauteskundeen artean hautagaien boto kopuruan egondako aldaketaren zeinua (igo, jaitsi...) bistaratzeko prestatu.
             if (aldea === "") {
 
                 // Hautagaia ez zen aurkeztu aurreko hauteskundeetan
                 // edo izena ez dator bat (izenen normalizazioarekin arazoak izan ditugu).
                 aldea = "-";
-                hautetsien_aldea = "-";
 
             } else if (aldea > 0) {
 
-                // Hautagaiaren hautetsi kopurua igo da.
+                // Hautagaiaren boto kopurua igo da.
                 aldea = "&#9650;" + aldea;
-                hautetsien_aldea = "&#9650;" + hautetsien_aldea;
 
             } else if (aldea < 0) {
 
-                // Hautagaiaren hautetsi kopurua jaitsi da.
+                // Hautagaiaren boto kopurua jaitsi da.
                 aldea = "&#9660;" + Math.abs(aldea);
+
+            } else {
+
+                // Hautagaiak boto kopuru berdina atera du.
+                aldea = "=";
+
+            }
+
+            // Bi hauteskundeen artean hautagaien hautetsi kopuruan egondako aldaketaren zeinua (igo, jaitsi...) bistaratzeko prestatu.
+            if (hautetsien_aldea === "") {
+
+                // Hautagaia ez zen aurkeztu aurreko hauteskundeetan
+                // edo izena ez dator bat (izenen normalizazioarekin arazoak izan ditugu).
+                hautetsien_aldea = "-";
+
+            } else if (hautetsien_aldea > 0) {
+
+                // Hautagaiaren hautetsi kopurua igo da.
+                hautetsien_aldea = "&#9650;" + hautetsien_aldea;
+
+            } else if (hautetsien_aldea < 0) {
+
+                // Hautagaiaren hautetsi kopurua jaitsi da.
                 hautetsien_aldea = "&#9660;" + Math.abs(hautetsien_aldea);
 
             } else {
 
                 // Hautagaiak hautetsi kopuru berdina atera du.
-                aldea = "=";
                 hautetsien_aldea = "=";
 
             }
